@@ -35,8 +35,6 @@ export default class Game {
         gameFrame++
         requestAnimationFrame(this.animate.bind(this));
     }
-
-
     
     setUpGame() {
         this.animate()
@@ -44,7 +42,7 @@ export default class Game {
 
     winner(){
         if (this.gameOver() === true){
-            if (this.score === this.winningScore && this.threeLivesLost() === false){
+            if (this.score >= this.winningScore && !this.threeLivesLost()){
                 console.log("Congratulations, you won!")
             }else{
                 console.log("oh no, try again!")
@@ -64,6 +62,14 @@ export default class Game {
     threeLivesLost(){
         if (this.lives > 0) return false
         return true
+    }
+
+    incrementScore(){
+        this.score += 100;
+    }
+
+    loseLife(){
+        this.lives -=1
     }
 
 }

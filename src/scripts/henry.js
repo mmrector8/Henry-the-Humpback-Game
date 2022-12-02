@@ -34,7 +34,12 @@ export default class Henry {
     }
 
     moveHorizontally(){
-        this.x--;
+        if(this.x > 0){
+            this.x--;
+        }else{
+            this.x = 600;
+        }
+        
     }
 
     moveVertically(){

@@ -7,12 +7,13 @@ As the game progresses and Henry eats, he will grow in size, thus making it more
 
 
 **Here are the general rules:**
-*You will control Henry using your keyboard. 
-*Use the left arrow to move horizontally, the up arrow to move vertically, and the down arrow to move down the water column.
-*You will have two minutes to eat as much food as you possibly can. Humpbacks can eat up to 3,000 lbs of food a day and feed throughout the summer and fall in Monterey!
-*Make sure you avoid any trash- Humpbacks like to eat krill, not plastic!
-*Avoid ships and other obstacles as well!
-*If you run into 3 obstacles and/or eat more than 3 pieces of garbage, the game will be over!
+***
+* You will control Henry using your keyboard. 
+* Use the left arrow to move horizontally, the up arrow to move vertically, and the down arrow to move down the water column.
+* You will have two minutes to eat as much food as you possibly can. Humpbacks can eat up to 3,000 lbs of food a day and feed throughout the summer and fall in Monterey!
+* Make sure you avoid any trash- Humpbacks like to eat krill, not plastic!
+* Avoid ships and other obstacles as well!
+* If you run into 3 obstacles and/or eat more than 3 pieces of garbage, the game will be over!
  
 **Functionality & MVPs**
 

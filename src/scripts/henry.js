@@ -1,6 +1,3 @@
-
-const CANVAS_WIDTH = 800;
-const CANVAS_HEIGHT = 600;
 const henry = new Image();
 henry.src = './images/henrysprite.png'
 
@@ -24,7 +21,7 @@ export default class Henry {
     }
 
     animateHenry() {
-        this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        this.ctx.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
         this.ctx.fillRect(0, 0, 800, 600);
         this.ctx.drawImage(henry, (frameX * henryWidth), (henryHeight), (henryWidth), (henryHeight), 600, 250, henryWidth, henryHeight)
 
@@ -36,6 +33,8 @@ export default class Henry {
             }
         }
         gameFrame++
-        requestAnimationFrame(this.animate.bind(this));
+        requestAnimationFrame(this.animateHenry.bind(this));
     }
+
+    
 }

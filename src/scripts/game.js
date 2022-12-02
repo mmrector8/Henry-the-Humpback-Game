@@ -1,13 +1,8 @@
+//import Henry from "./scripts/henry.js"
+import Henry from "./henry.js"
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
-const henry = new Image();
-henry.src = './images/henrysprite.png'
-
-let henryWidth = 188;
-let henryHeight = 55;
-let frameX = 1;
-let gameFrame = 0;
 
 export default class Game {
     constructor(ctx){
@@ -17,6 +12,7 @@ export default class Game {
         this.winningScore = 100;
         this.lives = 3
         this.setUpGame()
+
     }
 
     animateBackground(){
@@ -27,6 +23,8 @@ export default class Game {
     
     setUpGame() {
         this.animateBackground()
+        let newHenry = new Henry(this.CANVAS_WIDTH, this.CANVAS_HEIGHT, this.ctx)
+        this.player.animateHenry()
     }
 
     winner(){

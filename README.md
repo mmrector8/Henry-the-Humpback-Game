@@ -1,17 +1,19 @@
 # Henry-the-Humpback-Game
 
-Background: 
+**Background:** 
 
 Henry the Humpback is a game about Humpback Whales in Monterey Bay. As a player, you will be a juvenile humpback whale named Henry, and learn about Humpback Whales along the way! You will help Henry navigate his surroundings and eat enough food to prepare for his migration south after he leaves Monterey Bay. You will have a time limit- Henry only has so long to prepare before he heads South! 
 As the game progresses and Henry eats, he will grow in size, thus making it more difficult for him to navigate his surroundings. 
-Here are the general rules:
+
+
+**Here are the general rules:**
 You will control Henry using your keyboard. Use the left arrow to move horizontally, the up arrow to move vertically, and the down arrow to move down the water column.
 You will have two minutes to eat as much food as you possibly can. Humpbacks can eat up to 3,000 lbs of food a day and feed throughout the summer and fall in Monterey!
 Make sure you avoid any trash- Humpbacks like to eat krill, not plastic!
 Avoid ships and other obstacles as well!
 If you run into 3 obstacles and/or eat more than 3 pieces of garbage, the game will be over!
  
-Functionality & MVPs
+**Functionality & MVPs**
 
 In Henry the Humpback, users will be able to:
 
@@ -27,14 +29,12 @@ In addition, this project will include:
 1. An “about” modal describing the background and rules of the game
 2. A production README
 
-Wireframe: 
+**Wireframe:**
 
 (https://user-images.githubusercontent.com/100038201/205185336-5a726922-a816-4624-b8da-fced4594af84.png)
 
-
-
  
-Technologies, Libraries, APIs
+**Technologies, Libraries, APIs**
 
 The project will be implemented with the following technologies:
 
@@ -42,7 +42,7 @@ The Canvas API to render the game animation
 Webpack to bundle and transpile the JavaScript code
 Npm to manage the dependencies of the project
 
-Timeline for completion: 
+**Timeline for completion:**
 
   Thursday Evening:
   

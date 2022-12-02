@@ -1,21 +1,18 @@
 const henry = new Image();
 henry.src = './images/henrysprite.png'
 
-let henryWidth = 188;
-let henryHeight = 55;
-let frameX = 1;
-let gameFrame = 0;
-
 export default class Henry {
     constructor(CANVAS_WIDTH, CANVAS_HEIGHT, ctx){
         this.name = "Henry";
         this.ctx = ctx;
         this.CANVAS_WIDTH = CANVAS_WIDTH;
         this.CANVAS_HEIGHT = CANVAS_HEIGHT;
-        this.width = 200;
-        this.height = 200;
-        this.x = 0;
-        this.y =0;
+        this.henryWidth = 188;
+        this.henryHeight = 55;
+        this.frameX= 1;
+        this.gameFrame =0;
+        this.y = 250;
+        this.x =600;
         this.speed = 0;
         this.animateHenry();
     }
@@ -23,22 +20,25 @@ export default class Henry {
     animateHenry() {
         this.ctx.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
         this.ctx.fillRect(0, 0, 800, 600);
-        this.ctx.drawImage(henry, (frameX * henryWidth), (henryHeight), (henryWidth), (henryHeight), 600, 250, henryWidth, henryHeight)
-
-        if (gameFrame % 20 === 0) {
-            if (frameX < 4) {
-                frameX++
-            } if (frameX === 4) {
-                frameX = 0
+        this.ctx.drawImage(henry, (this.frameX * this.henryWidth), this.henryHeight, this.henryWidth, this.henryHeight, this.x, this.y, this.henryWidth, this.henryHeight)
+        this.moveHorizontally();
+        if (this.gameFrame % 20 === 0) {
+            if (this.frameX < 4) {
+                this.frameX++
+            } if (this.frameX === 4) {
+                this.frameX = 0
             }
         }
-        gameFrame++
+       this.gameFrame++
         requestAnimationFrame(this.animateHenry.bind(this));
     }
 
     moveHorizontally(){
-
+        this.x--;
     }
 
-    move
+    moveVertically(){
+        this.y--;
+    }
+
 }

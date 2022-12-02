@@ -12,7 +12,7 @@ export default class Game {
         this.winningScore = 100;
         this.lives = 3
         this.setUpGame()
-
+        this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx)
     }
 
     animateBackground(){
@@ -22,9 +22,7 @@ export default class Game {
     }
     
     setUpGame() {
-        this.animateBackground()
-        let newHenry = new Henry(this.CANVAS_WIDTH, this.CANVAS_HEIGHT, this.ctx)
-        this.player.animateHenry()
+        this.animateBackground();
     }
 
     winner(){

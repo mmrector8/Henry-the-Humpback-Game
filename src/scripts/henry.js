@@ -17,7 +17,7 @@ export default class Henry {
         this.x = 0;
         this.y =0;
         this.speed = 0;
-        this.animateHenry()
+        this.animateHenry();
     }
 
     animateHenry() {
@@ -36,5 +36,9 @@ export default class Henry {
         requestAnimationFrame(this.animateHenry.bind(this));
     }
 
-    
+    moveHorizontally(){
+
+    }
+
+    move
 }

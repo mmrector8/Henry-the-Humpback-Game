@@ -19,29 +19,18 @@ export default class Game {
         this.setUpGame()
     }
 
-    animate(){
+    animateBackground(){
         this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         this.ctx.fillStyle = "#2B65EC";
         this.ctx.fillRect(0, 0, 800, 600);
-        this.ctx.drawImage(henry, (frameX * henryWidth), (henryHeight), (henryWidth), (henryHeight), 600, 250, henryWidth, henryHeight)
-
-        if (gameFrame % 20 === 0) {
-            if (frameX < 4) {
-                frameX++
-            } if (frameX === 4) {
-                frameX = 0
-            }
-        }
-        gameFrame++
-        requestAnimationFrame(this.animate.bind(this));
     }
     
     setUpGame() {
-        this.animate()
+        this.animateBackground()
     }
 
     winner(){
-        if (this.gameOver() === true){
+        if (this.gameOver()){
             if (this.score >= this.winningScore && !this.threeLivesLost()){
                 console.log("Congratulations, you won!")
             }else{

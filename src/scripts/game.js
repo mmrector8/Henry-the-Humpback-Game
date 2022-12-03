@@ -1,6 +1,9 @@
 //import Henry from "./scripts/henry.js"
 import Henry from "./henry.js"
 
+const background = new Image();
+background.src = "./images/background.png"
+
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
 
@@ -19,8 +22,11 @@ export default class Game {
         this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         this.ctx.fillStyle = "#2B65EC";
         this.ctx.fillRect(0, 0, 800, 600);
+        this.ctx.drawImage(background, CANVAS_WIDTH, CANVAS_HEIGHT)
+        //requestAnimationFrame(background, CANVAS_WIDTH, CANVAS_HEIGHT)
     }
     
+
     setUpGame() {
         this.animateBackground();
     }

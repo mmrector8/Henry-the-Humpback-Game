@@ -18,19 +18,6 @@ export default class Game {
         //this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx)
     }
 
-    animateBackground(){
-        this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        this.ctx.fillStyle = "#2B65EC";
-        this.ctx.fillRect(0, 0, 800, 600);
-        this.ctx.drawImage(background, CANVAS_WIDTH, CANVAS_HEIGHT)
-        //requestAnimationFrame(background, CANVAS_WIDTH, CANVAS_HEIGHT)
-    }
-    
-
-    setUpGame() {
-        this.animateBackground();
-    }
-
     winner(){
         if (this.gameOver()){
             if (this.score >= this.winningScore && !this.threeLivesLost()){

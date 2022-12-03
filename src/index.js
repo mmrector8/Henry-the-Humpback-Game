@@ -5,5 +5,4 @@ import Game from "./scripts/game.js";
 
 
 let game1 = new Game(ctx);
-game1.henry.animate()
-
+game1.henry.addListeners()

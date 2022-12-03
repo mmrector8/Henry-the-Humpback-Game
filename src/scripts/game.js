@@ -50,4 +50,5 @@ export default class Game {
         this.lives -=1
     }
 
+    //increment Henry's size after each collision
 }

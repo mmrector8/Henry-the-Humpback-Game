@@ -1,13 +1,13 @@
 const krill = new Image();
-krill.src = './images/krill.png'
+krill.src = './images/krillcloud.png'
 
 export default class Krill {
     constructor(CANVAS_WIDTH, CANVAS_HEIGHT, ctx){
         this.ctx = ctx;
         this.CANVAS_WIDTH = CANVAS_WIDTH;
         this.CANVAS_HEIGHT = CANVAS_HEIGHT;
-        this.krillWidth = 121;
-        this.krillHeight = 69;
+        this.krillWidth = 115;
+        this.krillHeight = 71;
         this.frameX = 1;
         this.incrementer = 0;
         this.y = 0;

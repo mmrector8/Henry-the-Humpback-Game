@@ -13,7 +13,6 @@ export default class Henry {
         this.incrementer =0;
         this.y = 250;
         this.x =600;
-        this.speed = 0;
         this.animateHenry();
     }
 
@@ -33,32 +32,54 @@ export default class Henry {
         requestAnimationFrame(this.animateHenry.bind(this));
     }
 
-    moveHorizontally(){
+    moveHorizontallyLeft(){
         if(this.x > 0){
             this.x--
         }else{
-            this.x = 600;
+            this.x = 0;
         }
-     requestAnimationFrame(this.moveHorizontally.bind(this))
+     requestAnimationFrame(this.moveHorizontallyLeft.bind(this))
     }
 
-    moveVertically(){
+    moveHorizontallyRight() {
+        if (this.x <600) {
+            this.x++
+        } else {
+            this.x = 600;
+        }
+        requestAnimationFrame(this.moveHorizontallyRight.bind(this))
+    }
+
+    moveVerticallyUp(){
         if (this.y > 0) {
             this.y--;
         } else {
-            this.y = 250;
+            this.y = 0;
         }
-    requestAnimationFrame(this.moveVertically.bind(this))
+    requestAnimationFrame(this.moveVerticallyUp.bind(this))
+    }
+
+    moveVerticallyDown() {
+        if (this.y < 500) {
+            this.y++;
+        } else {
+            this.y = 500;
+        }
+        requestAnimationFrame(this.moveVerticallyDown.bind(this))
     }
 
     addListeners(){
+
         window.addEventListener("keydown", (e)=>{
-            if(e.key === "ArrowLeft" || e.key === "ArrowRight"){
-                console.log('henry should move horizontally')
-                this.moveHorizontally()
-            } else if (e.key === "ArrowDown" || e.key === "ArrowUp" ){
-                console.log('henry should move vertically')
-                this.moveVertically()
+            if(e.key === "ArrowLeft"){
+                this.moveHorizontallyLeft()
+                console.log('should be moving left')
+            } else if (e.key === "ArrowRight") {
+                this.moveHorizontallyRight()
+            } else if(e.key === "ArrowUp"){
+                this.moveVerticallyUp()
+            }else if(e.key === "ArrowDown"){
+                this.moveVerticallyDown();
             }
         })
     }

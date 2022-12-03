@@ -1,6 +1,7 @@
 import Game from "./game.js"
 import Henry from "./henry.js"
 import Krill from "./krill.js";
+import Background from "./background.js";
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
@@ -16,15 +17,18 @@ export default class GameView{
         this.game = new Game(ctx);
         this.ctx = ctx;
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
-        this.krill = new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, ctx)
+        this.krill = new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
+        this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx)
         this.animate();
     }
 
     animate(){
-        // this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+         this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         //  //console.log(background instanceof HTMLMediaElement)
         //this.ctx.drawImage(background, 0, 0 , CANVAS_WIDTH, CANVAS_HEIGHT)
         //this.game.animateBackground()
+        this.background.animateBackground();
+        this.background.updatePosition();
         this.henry.animateHenry();
         this.krill.animateKrill();
         requestAnimationFrame(this.animate.bind(this))

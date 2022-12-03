@@ -21,9 +21,9 @@ export default class Henry {
     }
 
     animateHenry() {
-        this.ctx.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
-        this.ctx.fillRect(0, 0, 800, 600);
-        this.ctx.drawImage(background, 0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT)
+        //this.ctx.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+        //this.ctx.fillRect(0, 0, 800, 600);
+        // this.ctx.drawImage(background, 0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT)
         this.ctx.drawImage(henry, (this.frameX * this.henryWidth), this.henryHeight, this.henryWidth, this.henryHeight, this.x, this.y, this.henryWidth, this.henryHeight);
         if (this.incrementer % 20 === 0) {
             if (this.frameX < 4) {

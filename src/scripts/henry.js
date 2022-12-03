@@ -19,13 +19,13 @@ export default class Henry {
     animateHenry() {
         this.ctx.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
         this.ctx.fillRect(0, 0, 800, 600);
-        this.ctx.drawImage(henry, (this.frameX * this.henryWidth), this.henryHeight, this.henryWidth, this.henryHeight, this.x, this.y, this.henryWidth, this.henryHeight)
+        this.ctx.drawImage(henry, (this.frameX * this.henryWidth), this.henryHeight, this.henryWidth, this.henryHeight, this.x, this.y, this.henryWidth, this.henryHeight);
         //this.moveHorizontally();
         if (this.incrementer % 20 === 0) {
             if (this.frameX < 4) {
-                this.frameX++
+                this.frameX++;
             } if (this.frameX === 4) {
-                this.frameX = 0
+                this.frameX = 0;
             }
         }
        this.incrementer++
@@ -34,20 +34,20 @@ export default class Henry {
 
     moveHorizontallyLeft(){
         if(this.x > 0){
-            this.x--
+            this.x--;
         }else{
             this.x = 0;
         }
-     requestAnimationFrame(this.moveHorizontallyLeft.bind(this))
+     requestAnimationFrame(this.moveHorizontallyLeft.bind(this));
     }
 
     moveHorizontallyRight() {
         if (this.x <600) {
-            this.x++
+            this.x++;
         } else {
             this.x = 600;
         }
-        requestAnimationFrame(this.moveHorizontallyRight.bind(this))
+        requestAnimationFrame(this.moveHorizontallyRight.bind(this));
     }
 
     moveVerticallyUp(){
@@ -56,7 +56,7 @@ export default class Henry {
         } else {
             this.y = 0;
         }
-    requestAnimationFrame(this.moveVerticallyUp.bind(this))
+    requestAnimationFrame(this.moveVerticallyUp.bind(this));
     }
 
     moveVerticallyDown() {
@@ -65,23 +65,22 @@ export default class Henry {
         } else {
             this.y = 500;
         }
-        requestAnimationFrame(this.moveVerticallyDown.bind(this))
+        requestAnimationFrame(this.moveVerticallyDown.bind(this));
     }
 
     addListeners(){
-
         window.addEventListener("keydown", (e)=>{
             if(e.key === "ArrowLeft"){
-                this.moveHorizontallyLeft()
+                this.moveHorizontallyLeft();
                 console.log('should be moving left')
             } else if (e.key === "ArrowRight") {
-                this.moveHorizontallyRight()
+                this.moveHorizontallyRight();
             } else if(e.key === "ArrowUp"){
-                this.moveVerticallyUp()
+                this.moveVerticallyUp();
             }else if(e.key === "ArrowDown"){
                 this.moveVerticallyDown();
             }
-        })
+        });
     }
 
 }

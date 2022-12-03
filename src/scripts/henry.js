@@ -64,10 +64,10 @@ export default class Henry {
     }
 
     moveVerticallyDown() {
-        if (this.y < 500) {
+        if (this.y < 450) {
             this.y++;
         } else {
-            this.y = 500;
+            this.y = 450;
         }
     requestAnimationFrame(this.moveVerticallyDown.bind(this));
     }

@@ -14,6 +14,7 @@ export default class Henry {
         this.y = 250;
         this.x =600;
         this.animateHenry();
+        this.addListeners();
     }
 
     animateHenry() {

@@ -14,8 +14,8 @@ export default class Game {
         this.timer = 200
         this.winningScore = 100;
         this.lives = 3
-        this.setUpGame()
-        this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx)
+        //this.setUpGame()
+        //this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx)
     }
 
     animateBackground(){

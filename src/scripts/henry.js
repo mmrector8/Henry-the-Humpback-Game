@@ -13,7 +13,7 @@ export default class Henry {
         this.incrementer =0;
         this.y = 250;
         this.x =600;
-        this.animateHenry();
+       // this.animateHenry();
         this.addListeners();
     }
 
@@ -29,7 +29,7 @@ export default class Henry {
             }
         }
        this.incrementer++
-        requestAnimationFrame(this.animateHenry.bind(this));
+       // requestAnimationFrame(this.animateHenry.bind(this));
     }
 
     moveHorizontallyLeft(){

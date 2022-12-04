@@ -10,7 +10,7 @@ export default class Kelp extends Obstacle{
     }
     animate(){
         this.ctx.drawImage(kelp, (this.frameX * this.width), this.height, this.width, this.height, this.x, this.y, this.width, this.height * 1.5);
-        if (this.incrementer % 20 === 0) {
+        if (this.incrementer % 15 === 0) {
             if (this.frameX < 4) {
                 this.frameX++;
             } if (this.frameX === 4) {

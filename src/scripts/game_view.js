@@ -3,6 +3,7 @@ import Henry from "./henry.js";
 import Krill from "./krill.js";
 import Background from "./background.js";
 import Kelp from "./kelp.js";
+import Rock from "./rock.js"
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
@@ -12,7 +13,9 @@ let LAST_TIME = 0;
 let KRILL_TIMER = 0;
 let KRILL_INTERVAL = Math.floor(Math.random() * 4500 + 3500);
 let KELP_TIMER = 0;
-let KELP_INTERVAL = Math.floor(Math.random() * 8000 + 10);
+const ROCK_ARR = []
+let ROCK_TIMER = 0;
+
 
 export default class GameView{
     constructor(ctx) {
@@ -20,7 +23,6 @@ export default class GameView{
         this.ctx = ctx;
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
-        this.kelp = new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, ctx, 0,0)
         this.animate(0);
         this.incrementer = 0;
     }
@@ -33,7 +35,8 @@ export default class GameView{
         this.background.updatePosition();
         this.henry.animateHenry();
         this.handleKrill(deltaTime);
-        this.handleKelp(deltaTime)
+        this.handleKelp(deltaTime);
+        this.handleRocks(deltaTime);
         requestAnimationFrame(this.animate.bind(this))
     }
 
@@ -52,8 +55,7 @@ export default class GameView{
     }
 
     handleKelp(deltaTime) {
-        let KELP_INTERVAL = Math.floor(Math.random() * 10000 + 2000);
-        console.log(KELP_INTERVAL)
+        let KELP_INTERVAL = Math.floor(Math.random() * 800000);
         if (KELP_TIMER > KELP_INTERVAL) {
             KELP_ARR.push(new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, 385))
             KELP_TIMER = 0;
@@ -63,6 +65,20 @@ export default class GameView{
         KELP_ARR.forEach((kelp) => {
             kelp.animate();
             kelp.updatePos();
+        })
+    }
+
+    handleRocks(deltaTime) {
+        let ROCK_INTERVAL = Math.floor(Math.random() * 8000000);
+        if (ROCK_TIMER > ROCK_INTERVAL) {
+            ROCK_ARR.push(new Rock(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -30, 385))
+            ROCK_TIMER = 0;
+        } else {
+            ROCK_TIMER += deltaTime;
+        }
+        ROCK_ARR.forEach((rock) => {
+            rock.animate();
+            rock.updatePos();
         })
     }
     

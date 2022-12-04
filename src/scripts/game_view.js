@@ -52,6 +52,8 @@ export default class GameView{
     }
 
     handleKelp(deltaTime) {
+        let KELP_INTERVAL = Math.floor(Math.random() * 10000 + 2000);
+        console.log(KELP_INTERVAL)
         if (KELP_TIMER > KELP_INTERVAL) {
             KELP_ARR.push(new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, 385))
             KELP_TIMER = 0;

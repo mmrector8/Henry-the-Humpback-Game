@@ -5,4 +5,3 @@ import GameView from "./scripts/game_view.js"
 
 
 let newView = new GameView(ctx);
-newView.generateRandomKrill();

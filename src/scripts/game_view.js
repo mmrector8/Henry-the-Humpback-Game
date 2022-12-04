@@ -15,9 +15,7 @@ export default class GameView{
         this.game = new Game(ctx);
         this.ctx = ctx;
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
-        //this.krill = new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx)
-        //this.generateRandomKrill();
         this.animate(0);
         this.incrementer = 0;
     }
@@ -30,8 +28,6 @@ export default class GameView{
         this.background.updatePosition();
         this.henry.animateHenry();
         this.handleKrill(deltaTime);
-        //this.krill.animateKrill();
-        //this.krill.updateKrillPos();
         requestAnimationFrame(this.animate.bind(this))
     }
     
@@ -50,12 +46,11 @@ export default class GameView{
 
     // let krillTimer =0;
     // let krillInterval = 1000;
+
     handleKrill(deltaTime){  
-        //console.log(KRILL_TIMER)
         if(KRILL_TIMER > KRILL_INTERVAL){
-            let randomX = Math.floor(Math.random() * (CANVAS_WIDTH/5) + 0)
             let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 100) + 0)
-            KRILL_ARR.push(new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, randomX, randomY))
+            KRILL_ARR.push(new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, 0, randomY))
             KRILL_TIMER = 0;
         } else{
             KRILL_TIMER += deltaTime;
@@ -66,7 +61,6 @@ export default class GameView{
             krill.animateKrill(500, 500);
             krill.updateKrillPos();
         })
-        //console.log(KRILL_ARR)
     }
     
 }

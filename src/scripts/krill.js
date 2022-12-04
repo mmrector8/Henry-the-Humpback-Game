@@ -15,7 +15,7 @@ export default class Krill {
         this.scroll = 2;
     }
 
-    animateKrill(x, y){
+    animateKrill(){
         this.ctx.drawImage(krill, (this.frameX * this.krillWidth), this.krillHeight, this.krillWidth, this.krillHeight, this.x, this.y, this.krillWidth, this.krillHeight);
          if (this.incrementer % 20 === 0) {
             if (this.frameX < 5) {
@@ -32,15 +32,4 @@ export default class Krill {
 
     }
     
-    //place krill randomly on page in groups
-    // generateRandomKrill(){
-    //     //generate a random number between 2 and 4
-    //     let randomNumOfKrills = Math.floor(Math.random() * (3) + 2)
-    //     //loop from 0 to that number
-    //     for(let i=0; i < randomNumOfKrills; i++){
-    //         let randomX = Math.floor(Math.random() * (this.CANVAS_WIDTH) + 0)
-    //         let randomY = Math.floor(Math.random() * (this.CANVAS_HEIGHT) + 0)
-            
-    //     }
-    // }
 }

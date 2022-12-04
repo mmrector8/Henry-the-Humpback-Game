@@ -50,15 +50,13 @@ export default class GameView{
     handleKrill(deltaTime){  
         if(KRILL_TIMER > KRILL_INTERVAL){
             let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 100) + 0)
-            KRILL_ARR.push(new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, 0, randomY))
+            KRILL_ARR.push(new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, randomY))
             KRILL_TIMER = 0;
         } else{
             KRILL_TIMER += deltaTime;
         }
         KRILL_ARR.forEach((krill)=> {
-            let randomX = Math.floor(Math.random() * (CANVAS_WIDTH) + 0)
-            let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 200) + 0)
-            krill.animateKrill(500, 500);
+            krill.animateKrill();
             krill.updateKrillPos();
         })
     }

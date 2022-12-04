@@ -5,5 +5,4 @@ import GameView from "./scripts/game_view.js"
 
 
 let newView = new GameView(ctx);
-//newView.animate()
-//game1.henry.addListeners()
+newView.generateRandomKrill();

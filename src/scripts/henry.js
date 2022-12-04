@@ -3,6 +3,7 @@ henry.src = './images/henrysprite.png'
 const background = new Image();
 background.src = './images/background.png'
 
+const KEYS = []
 
 export default class Henry {
     constructor(CANVAS_WIDTH, CANVAS_HEIGHT, ctx){
@@ -46,7 +47,7 @@ export default class Henry {
         } else {
             this.x = 600;
         }
-       requestAnimationFrame(this.moveHorizontallyRight.bind(this));
+    requestAnimationFrame(this.moveHorizontallyRight.bind(this));
     }
 
     moveVerticallyUp(){
@@ -71,7 +72,6 @@ export default class Henry {
         window.addEventListener("keydown", (e)=>{
             if(e.key === "ArrowLeft"){
                 this.moveHorizontallyLeft();
-                console.log('should be moving left')
             } else if (e.key === "ArrowRight") {
                 this.moveHorizontallyRight();
             } else if(e.key === "ArrowUp"){

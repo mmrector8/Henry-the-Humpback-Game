@@ -8,7 +8,7 @@ const CANVAS_HEIGHT = 600;
 const KRILL_ARR = []
 let LAST_TIME = 0;
 let KRILL_TIMER = 0;
-let KRILL_INTERVAL = 3500;
+let KRILL_INTERVAL = Math.floor(Math.random() * 4500 + 3500);
 
 export default class GameView{
     constructor(ctx) {
@@ -30,22 +30,6 @@ export default class GameView{
         this.handleKrill(deltaTime);
         requestAnimationFrame(this.animate.bind(this))
     }
-    
-
-    //  generateRandomKrill(){
-    //     //generate a random number between 2 and 4
-    //     let randomNumOfKrills = Math.floor(Math.random() * (3) + 2)
-    //     //loop from 0 to that number
-    //      KRILL_ARR.push(new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx))
-    //     //  for(let i=0; i < randomNumOfKrills; i++){
-    //     //     KRILL_ARR.push(new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx))
-    //     // //         console.log('hi')
-    //     //  }
-    //     console.log(KRILL_ARR.length)
-    // }
-
-    // let krillTimer =0;
-    // let krillInterval = 1000;
 
     handleKrill(deltaTime){  
         if(KRILL_TIMER > KRILL_INTERVAL){

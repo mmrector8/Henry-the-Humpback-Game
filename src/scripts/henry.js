@@ -1,5 +1,5 @@
 const henry = new Image();
-henry.src = './images/henrysprite.png'
+henry.src = './images/highdefHenry.png'
 const background = new Image();
 background.src = './images/background.png'
 
@@ -11,17 +11,17 @@ export default class Henry {
         this.ctx = ctx;
         this.CANVAS_WIDTH = CANVAS_WIDTH;
         this.CANVAS_HEIGHT = CANVAS_HEIGHT;
-        this.henryWidth = 188;
-        this.henryHeight = 55;
+        this.henryWidth = 360;
+        this.henryHeight = 105;
         this.frameX= 1;
         this.incrementer =0;
         this.y = 250;
-        this.x =600;
+        this.x =575;
         this.addListeners();
     }
 
     animateHenry() {
-        this.ctx.drawImage(henry, (this.frameX * this.henryWidth), this.henryHeight, this.henryWidth, this.henryHeight, this.x, this.y, this.henryWidth, this.henryHeight);
+        this.ctx.drawImage(henry, (this.frameX * this.henryWidth), this.henryHeight, this.henryWidth, this.henryHeight, this.x, this.y, this.henryWidth/1.5, this.henryHeight/1.5);
         if (this.incrementer % 20 === 0) {
             if (this.frameX < 4) {
                 this.frameX++;

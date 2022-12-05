@@ -1,3 +1,4 @@
+import GameView from "./game_view.js"
 
 const background = new Image();
 background.src = "./images/background.png"
@@ -8,10 +9,26 @@ const CANVAS_HEIGHT = 600;
 export default class Game {
     constructor(ctx){
         this.ctx = ctx;
+        this.gameView= new GameView(ctx);
         this.score = 0;
         this.timer = 200
         this.winningScore = 100;
-        this.lives = 3
+        this.lives = 3;
+    }
+
+    //game loop, if the game isnt over, check for collisions
+
+    //collisions?(){
+        //set result of collision function to variable
+        //if that variable name is 'whale', subtract 10 points
+        // else subtr
+        //collides with krill, gains points
+    //}
+
+    increaseHenrySize(){
+        //need to fix scaling here
+        this.gameView.henry.henryWidth += 2;
+        this.gameView.henry.henryHeight += 2;
     }
 
     winner(){
@@ -45,10 +62,7 @@ export default class Game {
     loseLife(){
         this.lives -=1
     }
-
-    collisionDetection() {
-        //
-    }
+    
 
     //increment Henry's size after each collision with krill
 }

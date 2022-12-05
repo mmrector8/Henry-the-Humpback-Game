@@ -1,4 +1,3 @@
-import Game from "./game.js";
 import Henry from "./henry.js";
 import Krill from "./krill.js";
 import Background from "./background.js";
@@ -27,13 +26,12 @@ const SUB_ARR = [];
 
 export default class GameView{
     constructor(ctx) {
-        this.game = new Game(ctx);
         this.ctx = ctx;
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.animate(0);
-        this.incrementer = 0;
     }
+
 
     animate(timeStamp){
         const deltaTime = timeStamp - LAST_TIME;
@@ -48,6 +46,7 @@ export default class GameView{
         this.addOtherWhales(deltaTime);
         this.addTrash(deltaTime)
         this.addSubs(deltaTime)
+        this.obstacleArray();
         requestAnimationFrame(this.animate.bind(this))
     }
 
@@ -65,14 +64,14 @@ export default class GameView{
         KRILL_ARR.forEach((krill)=> {
             krill.animateKrill();
             krill.updateKrillPos();
-            if(krill.x > CANVAS_WIDTH){
-                KRILL_ARR.splice(krill)
+            if(krill.x > CANVAS_WIDTH + 200){
+                KRILL_ARR.shift()
             }
         })
     }
 
     addKelp(deltaTime) {
-        let kelpInterval = Math.floor(Math.random() * 600000);
+        let kelpInterval = Math.floor(Math.random() * 500000);
         if (KELP_TIMER > kelpInterval) {
             KELP_ARR.push(new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, 385))
             KELP_TIMER = 0;
@@ -82,8 +81,8 @@ export default class GameView{
         KELP_ARR.forEach((kelp) => {
             kelp.animate();
             kelp.updatePos();
-            if(kelp.x > CANVAS_WIDTH){
-                KELP_ARR.splice(kelp)
+            if(kelp.x > CANVAS_WIDTH+300){
+                KELP_ARR.shift()
             }
         })
     }
@@ -100,14 +99,14 @@ export default class GameView{
             rock.animate();
             rock.updatePos();
             if(rock.x > CANVAS_WIDTH){
-                ROCK_ARR.splice(rock)
+                ROCK_ARR.shift()
             }
         })
     }
 
     addOtherWhales(deltaTime) {
         let whaleInterval = Math.floor(Math.random() * 6000000);
-        let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 300) + 0)
+        let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 340) + 0)
         if (WHALE_TIMER > whaleInterval) {
             WHALE_ARR.push(new Whale(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -30, randomY))
             WHALE_TIMER = 0;
@@ -118,9 +117,10 @@ export default class GameView{
             whale.animate();
             whale.updatePos();
             if(whale.x > CANVAS_WIDTH){
-                WHALE_ARR.splice(whale)
+                WHALE_ARR.shift()
             }
         })
+        
     }
     
     addTrash(deltaTime) {
@@ -137,7 +137,7 @@ export default class GameView{
             trash.animate();
             trash.updateTrashPos();
             if(trash.x > CANVAS_WIDTH){
-                TRASH_ARR.splice(trash)
+                TRASH_ARR.shift()
             }
         })
     }
@@ -154,10 +154,25 @@ export default class GameView{
         SUB_ARR.forEach((sub) => {
             sub.animate();
             sub.updatePos();
-            if(sub.x > CANVAS_WIDTH){
-                SUB_ARR.splice(sub)
+            if(sub.x > CANVAS_WIDTH + 100){
+                SUB_ARR.shift()
             }
         })
+    }
+
+    obstacleArray() {
+        let CURRENT_OBSTACLES = (SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR)
+        console.log(CURRENT_OBSTACLES)
+        return CURRENT_OBSTACLES;
+    }
+
+    collisionWithObject(){
+        //loop through the obstacle array
+        // if an object hits henry
+        // return 'name of object'
+        // in game class, subtract points depending on the name of the object returned
+        // remove Krill 
+        // otherwise return false
     }
    
 }

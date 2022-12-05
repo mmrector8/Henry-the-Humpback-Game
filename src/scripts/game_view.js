@@ -6,21 +6,25 @@ import Kelp from "./kelp.js";
 import Rock from "./rock.js";
 import Whale from "./whale.js";
 import Trash from "./trash.js";
+import Submarine from "./submarine.js"
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
-const KRILL_ARR = []
-const KELP_ARR = []
+const KRILL_ARR = [];
+const KELP_ARR = [];
 let LAST_TIME = 0;
 let KRILL_TIMER = 0;
 let KRILL_INTERVAL = Math.floor(Math.random() * 4500 + 3500);
 let KELP_TIMER = 0;
-const ROCK_ARR = []
+const ROCK_ARR = [];
 let ROCK_TIMER = 0;
 let WHALE_TIMER = 0;
-let WHALE_ARR =[]
+let WHALE_ARR =[];
 let TRASH_TIMER = 0;
-let TRASH_ARR = []
+let TRASH_ARR = [];
+let SUB_TIMER = 0;
+let SUB_ARR = [];
+
 
 export default class GameView{
     constructor(ctx) {
@@ -44,6 +48,7 @@ export default class GameView{
         this.addRocks(deltaTime);
         this.addOtherWhales(deltaTime);
         this.addTrash(deltaTime)
+        this.addSubs(deltaTime)
         requestAnimationFrame(this.animate.bind(this))
     }
 
@@ -119,5 +124,21 @@ export default class GameView{
             trash.updateTrashPos();
         })
     }
+
+    addSubs(deltaTime) {
+        let SUB_INTERVAL = Math.floor(Math.random() * 6000000);
+        let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 300) + 0)
+        if (SUB_TIMER > SUB_INTERVAL) {
+            SUB_ARR.push(new Submarine(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, 0, randomY))
+            SUB_TIMER = 0;
+        } else {
+            SUB_TIMER += deltaTime;
+        }
+        SUB_ARR.forEach((sub) => {
+            sub.animate();
+            sub.updatePos();
+        })
+    }
+   
 }
 

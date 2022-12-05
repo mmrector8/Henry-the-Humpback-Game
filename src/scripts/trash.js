@@ -18,9 +18,6 @@ export default class Trash extends Obstacle {
         } else{
             this.ctx.drawImage(trash, (this.width), (2* this.height), this.width, this.height, this.x, this.y, this.width / 4, this.height / 5);
         }
-            // this.ctx.drawImage(trash, (this.width), (2* this.height), this.width, this.height, this.x, this.y, this.width / 4, this.height / 4);
-            // this.ctx.drawImage(trash, (this.width), (1 * this.height), this.width, this.height, this.x, this.y, this.width / 4, this.height / 4);
-           // this.ctx.drawImage(trash, (this.width), (0 * this.height), this.width, this.height, this.x, this.y, this.width / 4, this.height / 4);
         if (this.incrementer % 25 === 0) {
             if (this.frame < 9) {
                 this.frame++;

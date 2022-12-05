@@ -4,7 +4,8 @@ import Krill from "./krill.js";
 import Background from "./background.js";
 import Kelp from "./kelp.js";
 import Rock from "./rock.js";
-import Whale from "./whale.js"
+import Whale from "./whale.js";
+import Trash from "./trash.js";
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
@@ -18,6 +19,8 @@ const ROCK_ARR = []
 let ROCK_TIMER = 0;
 let WHALE_TIMER = 0;
 let WHALE_ARR =[]
+let TRASH_TIMER = 0;
+let TRASH_ARR = []
 
 export default class GameView{
     constructor(ctx) {
@@ -40,6 +43,7 @@ export default class GameView{
         this.addKelp(deltaTime);
         this.addRocks(deltaTime);
         this.addOtherWhales(deltaTime);
+        this.addTrash(deltaTime)
         requestAnimationFrame(this.animate.bind(this))
     }
 
@@ -58,7 +62,7 @@ export default class GameView{
     }
 
     addKelp(deltaTime) {
-        let KELP_INTERVAL = Math.floor(Math.random() * 800000);
+        let KELP_INTERVAL = Math.floor(Math.random() * 600000);
         if (KELP_TIMER > KELP_INTERVAL) {
             KELP_ARR.push(new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, 385))
             KELP_TIMER = 0;
@@ -74,7 +78,7 @@ export default class GameView{
     addRocks(deltaTime) {
         let ROCK_INTERVAL = Math.floor(Math.random() * 8000000);
         if (ROCK_TIMER > ROCK_INTERVAL) {
-            ROCK_ARR.push(new Rock(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -30, 385))
+            ROCK_ARR.push(new Rock(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -100, 385))
             ROCK_TIMER = 0;
         } else {
             ROCK_TIMER += deltaTime;
@@ -86,8 +90,8 @@ export default class GameView{
     }
 
     addOtherWhales(deltaTime) {
-        let WHALE_INTERVAL = Math.floor(Math.random() * 8000000);
-        let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 250) + 0)
+        let WHALE_INTERVAL = Math.floor(Math.random() * 6000000);
+        let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 300) + 0)
         if (WHALE_TIMER > WHALE_INTERVAL) {
             WHALE_ARR.push(new Whale(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -30, randomY))
             WHALE_TIMER = 0;
@@ -100,5 +104,19 @@ export default class GameView{
         })
     }
     
+    addTrash(deltaTime) {
+        let TRASH_INTERVAL = Math.floor(Math.random() * 600000);
+        let randomX = Math.floor(Math.random() * (CANVAS_WIDTH - 400) + 0)
+        if (TRASH_TIMER > TRASH_INTERVAL) {
+            TRASH_ARR.push(new Trash(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, randomX, 0))
+            TRASH_TIMER = 0;
+        } else {
+            TRASH_TIMER += deltaTime;
+        }
+        TRASH_ARR.forEach((trash) => {
+            trash.animate();
+            trash.updateTrashPos();
+        })
+    }
 }
 

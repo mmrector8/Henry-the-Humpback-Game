@@ -126,8 +126,8 @@ export default class GameView{
     }
 
     addSubs(deltaTime) {
-        let SUB_INTERVAL = Math.floor(Math.random() * 6000000);
-        let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 300) + 0)
+        let SUB_INTERVAL = Math.floor(Math.random() * 9000000);
+        let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 375) + 0)
         if (SUB_TIMER > SUB_INTERVAL) {
             SUB_ARR.push(new Submarine(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, 0, randomY))
             SUB_TIMER = 0;

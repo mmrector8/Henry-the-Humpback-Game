@@ -13,9 +13,7 @@ const CANVAS_HEIGHT = 600;
 let LAST_TIME = 0;
 const KRILL_ARR = [];
 const KELP_ARR = [];
-
 let KRILL_TIMER = 0;
-
 let KELP_TIMER = 0;
 const ROCK_ARR = [];
 let ROCK_TIMER = 0;
@@ -53,6 +51,8 @@ export default class GameView{
         requestAnimationFrame(this.animate.bind(this))
     }
 
+    //collision detection algo
+
     addKrill(deltaTime){  
         let krillInterval = Math.floor(Math.random() * 4500 + 3500);
         if(KRILL_TIMER > krillInterval){
@@ -65,6 +65,9 @@ export default class GameView{
         KRILL_ARR.forEach((krill)=> {
             krill.animateKrill();
             krill.updateKrillPos();
+            if(krill.x > CANVAS_WIDTH){
+                KRILL_ARR.splice(krill)
+            }
         })
     }
 
@@ -79,6 +82,9 @@ export default class GameView{
         KELP_ARR.forEach((kelp) => {
             kelp.animate();
             kelp.updatePos();
+            if(kelp.x > CANVAS_WIDTH){
+                KELP_ARR.splice(kelp)
+            }
         })
     }
 
@@ -93,6 +99,9 @@ export default class GameView{
         ROCK_ARR.forEach((rock) => {
             rock.animate();
             rock.updatePos();
+            if(rock.x > CANVAS_WIDTH){
+                ROCK_ARR.splice(rock)
+            }
         })
     }
 
@@ -108,6 +117,9 @@ export default class GameView{
         WHALE_ARR.forEach((whale) => {
             whale.animate();
             whale.updatePos();
+            if(whale.x > CANVAS_WIDTH){
+                WHALE_ARR.splice(whale)
+            }
         })
     }
     
@@ -124,11 +136,14 @@ export default class GameView{
         TRASH_ARR.forEach((trash) => {
             trash.animate();
             trash.updateTrashPos();
+            if(trash.x > CANVAS_WIDTH){
+                TRASH_ARR.splice(trash)
+            }
         })
     }
 
     addSubs(deltaTime) {
-        let subInterval = Math.floor(Math.random() * 9000000);
+        let subInterval = Math.floor(Math.random() * 50000000);
         let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 375) + 0)
         if (SUB_TIMER > subInterval) {
             SUB_ARR.push(new Submarine(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, 0, randomY))
@@ -139,6 +154,9 @@ export default class GameView{
         SUB_ARR.forEach((sub) => {
             sub.animate();
             sub.updatePos();
+            if(sub.x > CANVAS_WIDTH){
+                SUB_ARR.splice(sub)
+            }
         })
     }
    

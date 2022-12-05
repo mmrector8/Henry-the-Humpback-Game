@@ -1,5 +1,3 @@
-//import Henry from "./scripts/henry.js"
-import Henry from "./henry.js"
 
 const background = new Image();
 background.src = "./images/background.png"
@@ -14,8 +12,6 @@ export default class Game {
         this.timer = 200
         this.winningScore = 100;
         this.lives = 3
-        //this.setUpGame()
-        //this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx)
     }
 
     winner(){
@@ -50,5 +46,9 @@ export default class Game {
         this.lives -=1
     }
 
-    //increment Henry's size after each collision
+    collisionDetection() {
+        //
+    }
+
+    //increment Henry's size after each collision with krill
 }

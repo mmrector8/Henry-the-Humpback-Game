@@ -6,18 +6,19 @@ export default class Krill {
         this.ctx = ctx;
         this.CANVAS_WIDTH = CANVAS_WIDTH;
         this.CANVAS_HEIGHT = CANVAS_HEIGHT;
-        this.krillWidth = 115;
-        this.krillHeight = 71;
+        this.width = 115;
+        this.height = 71;
         this.frameX = 1;
         this.incrementer = 0;
         this.y = y;
         this.x = x;
         this.scroll = 2;
-        this.divisor = 1;
+        this.divisor = 2.3;
+        this.name = 'krill';
     }
 
     animateKrill(){
-        this.ctx.drawImage(krill, (this.frameX * this.krillWidth), this.krillHeight, this.krillWidth, this.krillHeight, this.x, this.y, this.krillWidth, this.krillHeight);
+        this.ctx.drawImage(krill, (this.frameX * this.width), this.height, this.width, this.height, this.x, this.y, this.width, this.height);
          if (this.incrementer % 20 === 0) {
             if (this.frameX < 5) {
                 this.frameX++;

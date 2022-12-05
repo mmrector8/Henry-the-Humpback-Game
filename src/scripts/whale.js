@@ -9,6 +9,7 @@ export default class Whale extends Obstacle{
         this.width = 360;
         this.height = 105;
         this.divisor = 2;
+        this.name = 'whale'
     }
 
     animate(){

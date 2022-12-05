@@ -164,7 +164,7 @@ export default class GameView{
 
     obstacleArray() {
         // if(OBSTACLE_TIMER % 50 === 0){
-            CURRENT_OBSTACLES = (SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR).concat(KRILL_ARR)
+            CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR)
         //     return CURRENT_OBSTACLES;
         // } else{
         //     //console.log(CURRENT_OBSTACLES)
@@ -176,21 +176,14 @@ export default class GameView{
 
     collisionWithObject(){
         CURRENT_OBSTACLES.forEach((obstacle)=> {
-        // if an object hits henry
-            // if ((this.henry.x + this.henry.henryWidth) >= obstacle.x ){
-            //     //console.log('true')
-            //     return String(obstacle.prototype)
-            // } 
 
             if ((obstacle.y + obstacle.height/obstacle.divisor) >= this.henry.y 
-                &&obstacle.y <= this.henry.y + (this.henry.henryHeight/this.henry.divisor) &&
+                && obstacle.y <= this.henry.y + (this.henry.henryHeight/this.henry.divisor) &&
                 (this.henry.x + (this.henry.henryWidth/this.henry.divisor)) >= obstacle.x &&
                 this.henry.x <= obstacle.x + (obstacle.width/obstacle.divisor)
                 ){
-                console.log('true')
-                console.log((obstacle.prototype))
-                //console.log(obstacle.x, obstacle.y, this.henry.x, this.henry.y)
-                return String(obstacle.prototype)
+                console.log((obstacle.name))
+                return(obstacle.name)
             }
             return false
         })

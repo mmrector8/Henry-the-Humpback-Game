@@ -7,10 +7,11 @@ export default class Rock extends Obstacle {
         super(CANVAS_WIDTH, CANVAS_HEIGHT, ctx, x, y);
         this.width = 221;
         this.height = 278;
-        this.divisor = 1;
+        this.divisor = 0.5;
+        this.name = 'rock';
     }
 
     animate(){
-       this.ctx.drawImage(rock, this.x ,300, this.width, this.height)
+       this.ctx.drawImage(rock, this.x , 300, this.width, this.height)
     }
 }

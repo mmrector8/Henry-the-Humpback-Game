@@ -8,6 +8,7 @@ export default class Kelp extends Obstacle{
         this.width = 70;
         this.height = 112;
         this.divisor = 1;
+        this.name = 'kelp'
     }
     animate(){
         this.ctx.drawImage(kelp, (this.frameX * this.width), this.height, this.width, this.height, this.x, this.y, this.width, this.height * 1.5);

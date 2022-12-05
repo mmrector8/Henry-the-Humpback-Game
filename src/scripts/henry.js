@@ -15,6 +15,7 @@ export default class Henry {
         this.henryHeight = 105;
         this.frameX= 1;
         this.incrementer =0;
+        this.divisor = 1.5;
         this.y = 250;
         this.x =575;
         this.addListeners();

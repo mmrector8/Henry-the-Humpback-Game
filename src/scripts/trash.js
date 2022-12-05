@@ -9,6 +9,7 @@ export default class Trash extends Obstacle {
         this.height = 205;
         this.frame = 1;
         this.trashIdx = num
+        this.divisor = 7;
     }
     animate() {
         if (this.trashIdx === 0){

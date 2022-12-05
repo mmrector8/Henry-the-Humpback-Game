@@ -8,6 +8,7 @@ export default class Whale extends Obstacle{
         super(CANVAS_WIDTH, CANVAS_HEIGHT, ctx, x, y)
         this.width = 360;
         this.height = 105;
+        this.divisor = 2;
     }
 
     animate(){

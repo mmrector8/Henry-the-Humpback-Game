@@ -13,6 +13,7 @@ export default class Krill {
         this.y = y;
         this.x = x;
         this.scroll = 2;
+        this.divisor = 1;
     }
 
     animateKrill(){

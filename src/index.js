@@ -5,5 +5,5 @@ import Game from "./scripts/game.js"
  const ctx = canvas.getContext("2d")
 
 let newGame = new Game(ctx)
-newGame.gameView.obstacleArray();
+console.log(newGame.gameView.collisionWithObject());
 

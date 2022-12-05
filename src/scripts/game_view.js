@@ -22,7 +22,8 @@ let TRASH_TIMER = 0;
 const TRASH_ARR = [];
 let SUB_TIMER = 0;
 const SUB_ARR = [];
-
+let OBSTACLE_TIMER = 0;
+let CURRENT_OBSTACLES = []
 
 export default class GameView{
     constructor(ctx) {
@@ -47,6 +48,7 @@ export default class GameView{
         this.addTrash(deltaTime)
         this.addSubs(deltaTime)
         this.obstacleArray();
+        this.collisionWithObject();
         requestAnimationFrame(this.animate.bind(this))
     }
 
@@ -161,18 +163,37 @@ export default class GameView{
     }
 
     obstacleArray() {
-        let CURRENT_OBSTACLES = (SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR)
-        console.log(CURRENT_OBSTACLES)
-        return CURRENT_OBSTACLES;
+        // if(OBSTACLE_TIMER % 50 === 0){
+            CURRENT_OBSTACLES = (SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR).concat(KRILL_ARR)
+        //     return CURRENT_OBSTACLES;
+        // } else{
+        //     //console.log(CURRENT_OBSTACLES)
+        //     //return CURRENT_OBSTACLES;
+        // }
+        return CURRENT_OBSTACLES
+
     }
 
     collisionWithObject(){
-        //loop through the obstacle array
+        CURRENT_OBSTACLES.forEach((obstacle)=> {
         // if an object hits henry
-        // return 'name of object'
-        // in game class, subtract points depending on the name of the object returned
-        // remove Krill 
-        // otherwise return false
+            // if ((this.henry.x + this.henry.henryWidth) >= obstacle.x ){
+            //     //console.log('true')
+            //     return String(obstacle.prototype)
+            // } 
+
+            if ((obstacle.y + obstacle.height/obstacle.divisor) >= this.henry.y 
+                &&obstacle.y <= this.henry.y + (this.henry.henryHeight/this.henry.divisor) &&
+                (this.henry.x + (this.henry.henryWidth/this.henry.divisor)) >= obstacle.x &&
+                this.henry.x <= obstacle.x + (obstacle.width/obstacle.divisor)
+                ){
+                console.log('true')
+                console.log((obstacle.prototype))
+                //console.log(obstacle.x, obstacle.y, this.henry.x, this.henry.y)
+                return String(obstacle.prototype)
+            }
+            return false
+        })
     }
    
 }

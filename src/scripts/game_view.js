@@ -105,10 +105,11 @@ export default class GameView{
     }
     
     addTrash(deltaTime) {
-        let TRASH_INTERVAL = Math.floor(Math.random() * 600000);
-        let randomX = Math.floor(Math.random() * (CANVAS_WIDTH - 400) + 0)
+        let TRASH_INTERVAL = Math.floor(Math.random() * 4000000);
+        let randomX = Math.floor(Math.random() * (CANVAS_WIDTH - 600) + 0)
+        let trashIdx = Math.floor(Math.random() * 3)
         if (TRASH_TIMER > TRASH_INTERVAL) {
-            TRASH_ARR.push(new Trash(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, randomX, 0))
+            TRASH_ARR.push(new Trash(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, randomX, 0, trashIdx))
             TRASH_TIMER = 0;
         } else {
             TRASH_TIMER += deltaTime;

@@ -156,7 +156,7 @@ export default class Game {
     }
 
     addKrill(deltaTime) {
-        let krillInterval = Math.floor(Math.random() * 450000 + 3500);
+        let krillInterval = Math.floor(Math.random() * 4500 + 3500);
         if (KRILL_TIMER > krillInterval) {
             let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 100) + 0)
             KRILL_ARR.push(new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, randomY))
@@ -174,7 +174,7 @@ export default class Game {
     }
 
     addKelp(deltaTime) {
-        let kelpInterval = Math.floor(Math.random() * 50000000);
+        let kelpInterval = Math.floor(Math.random() * 500000);
         if (KELP_TIMER > kelpInterval) {
             KELP_ARR.push(new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, 385))
             KELP_TIMER = 0;

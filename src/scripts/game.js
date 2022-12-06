@@ -40,6 +40,7 @@ export default class Game {
         this.winningScore = 300;
         this.collisions=[]
         this.animate(0);
+        this.lives = 3;
     }
 
     //game loop, if the game isnt over, check for collisions
@@ -48,7 +49,9 @@ export default class Game {
         // show the instructions and facts
         
         //console.log(this.collisions)
-           console.log(this.points, 'points')
+        this.ctx.font= "25px Luckiest-Guy"
+        //this.ctx.drawRect()
+        this.ctx.fillText(`Points: ${this.points}`, 700, 40, 80)
         //check for collisions
             if(this.collisions.length){
                 for (let i = 0; i < this.collisions.length; i++) {
@@ -64,33 +67,34 @@ export default class Game {
             }
             
         // this.ctx.fillText("Game over!", 10, 90)
-
-            if (this.winner()){
-                this.ctx.fillText("Congratulations, you won!", 10, 90)
-            } else {
-                this.ctx.fillText("Oh no, you lost. Try again!", 10, 90)
+            if(this.gameOver()){
+                if (this.winner()) {
+                    this.ctx.fillText("Congratulations, you won!", 900, 90)
+                } else {
+                    this.ctx.fillText("Oh no, you lost. Try again!", 400, 100)
+                    this.points = 0;
+                }
             }
+ 
      }
 
 
     increaseHenrySize(){
         //need to fix scaling here
-        this.henry.henryWidth *= 1.01;
-        this.henry.henryHeight *= 1.01;
+        this.henry.henryWidth *= 1.02;
+        this.henry.henryHeight *= 1.02;
     }
 
     winner(){
-        if (this.gameOver()){
-            if (this.score >= this.winningScore && !this.threeLivesLost()){
+            if (this.points >= this.winningScore ){
                 console.log("Congratulations, you won!")
             }else{
                 console.log("oh no, try again!")
             }        
-        }
     }
 
     gameOver(){
-       if (this.points >= 30 || this.points < 0) return true;
+       if (this.points >= 300 || this.points < 0) return true;
         return false;
     }
 

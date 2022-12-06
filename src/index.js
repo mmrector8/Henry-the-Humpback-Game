@@ -6,5 +6,4 @@ import Game from "./scripts/game.js"
 
 let newGame = new Game(ctx)
 newGame.play();
-console.log(newGame.collisions.length)
 

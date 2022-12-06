@@ -31,6 +31,7 @@ export default class GameView{
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         //this.animate(0);
+        this.collisions = [];
     }
 
 
@@ -169,19 +170,6 @@ export default class GameView{
     }
 
     collisionWithObject(){
-        //     CURRENT_OBSTACLES.forEach((obstacle) => {
-
-        //         if ((obstacle.y + obstacle.height / obstacle.divisor) >= this.henry.y
-        //             && obstacle.y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor) &&
-        //             (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= obstacle.x &&
-        //             this.henry.x <= obstacle.x + (obstacle.width / obstacle.divisor)
-        //         ) {
-        //             console.log(obstacle.name)
-        //             return obstacle.name
-        //         }
-               
-        //     })
-        // return false
         for(let i=0; i < CURRENT_OBSTACLES.length; i++){
             if ((CURRENT_OBSTACLES[i].y + CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor) >= this.henry.y
                 && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor) &&
@@ -189,6 +177,9 @@ export default class GameView{
                 this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor) &&
                 CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
                     CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
+                    //console.log(CURRENT_OBSTACLES[i].name)
+                    this.collisions.push(CURRENT_OBSTACLES[i].name)
+                    console.log(this.collisions)
                     return CURRENT_OBSTACLES[i].name
                 }
         }

@@ -7,8 +7,6 @@ import Rock from "./rock.js";
 import Whale from "./whale.js";
 import Trash from "./trash.js";
 import Submarine from "./submarine.js"
-import Obstacle from "./obstacles.js"
-import { prototype } from "events";
 
 const background = new Image();
 background.src = "./images/background.png"
@@ -43,10 +41,19 @@ export default class Game {
         this.collisions=[]
         this.health = 500;
         this.timer = 0;
-        this.animate(0);
+        this.startGame();
+        //this.animate(0);
     }
 
     //game loop, if the game isnt over, check for collisions
+    startGame(){
+        //this.background.animateBackground();
+        window.addEventListener('keydown', ()=>{
+            let display = document.getElementById("startImage")
+            display.style.display = "none"
+            this.animate(0)
+        }, {once: true})
+    }
 
     play(){
         // show the instructions and facts
@@ -74,24 +81,27 @@ export default class Game {
                  }
                  else if (this.collisions[i]) {
                      this.decrementHealth();
-                     //this.ctx.fillText("ouch!", 300, 300)
                  }
                  this.collisions.shift();
              }
          }
      }
 
+     ouchMessage(){
+        this.setTimeOut(()=>{this.ctx.fillText("ouch!", 300, 300)},2000)
+     }
+
      endOfGame(){
         if(this.gameOver()){
             if (this.winner()) {
                 this.textAlign = "center";
-                this.ctx.fillText("Congratulations, you won!", 200, 200)
+                this.ctx.fillText("Congratulations, you won!", 300, 200)
                 this.ctx.fillText("Henry is ready for", 200, 300)
                 this.ctx.fillText("a successful migration!", 200, 325)
                 window.cancelAnimationFrame(animate)
             } else if (this.gameOver()) {
-                console.log('you lose')
-                this.ctx.fillText("Oh no, you lost. Try again!", 200, 100)
+                this.health = 0;
+                this.ctx.fillText("Oh no, you lost. Try again!", 230, 200)
                 window.cancelAnimationFrame(animate)
             }
         }
@@ -146,7 +156,7 @@ export default class Game {
     }
 
     addKrill(deltaTime) {
-        let krillInterval = Math.floor(Math.random() * 4500 + 3500);
+        let krillInterval = Math.floor(Math.random() * 450000 + 3500);
         if (KRILL_TIMER > krillInterval) {
             let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 100) + 0)
             KRILL_ARR.push(new Krill(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, randomY))
@@ -164,7 +174,7 @@ export default class Game {
     }
 
     addKelp(deltaTime) {
-        let kelpInterval = Math.floor(Math.random() * 500000);
+        let kelpInterval = Math.floor(Math.random() * 50000000);
         if (KELP_TIMER > kelpInterval) {
             KELP_ARR.push(new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, 385))
             KELP_TIMER = 0;

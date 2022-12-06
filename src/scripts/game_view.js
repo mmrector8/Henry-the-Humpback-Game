@@ -23,14 +23,14 @@ const TRASH_ARR = [];
 let SUB_TIMER = 0;
 const SUB_ARR = [];
 let OBSTACLE_TIMER = 0;
-let CURRENT_OBSTACLES = []
+let CURRENT_OBSTACLES = [];
 
 export default class GameView{
     constructor(ctx) {
         this.ctx = ctx;
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
-        this.animate(0);
+        //this.animate(0);
     }
 
 
@@ -46,7 +46,7 @@ export default class GameView{
         this.addRocks(deltaTime);
         this.addOtherWhales(deltaTime);
         this.addTrash(deltaTime)
-        this.addSubs(deltaTime)
+        this.addSubs(deltaTime);
         this.obstacleArray();
         this.collisionWithObject();
         requestAnimationFrame(this.animate.bind(this))
@@ -163,30 +163,36 @@ export default class GameView{
     }
 
     obstacleArray() {
-        // if(OBSTACLE_TIMER % 50 === 0){
-            CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR)
-        //     return CURRENT_OBSTACLES;
-        // } else{
-        //     //console.log(CURRENT_OBSTACLES)
-        //     //return CURRENT_OBSTACLES;
-        // }
+        CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR)
         return CURRENT_OBSTACLES
 
     }
 
     collisionWithObject(){
-        CURRENT_OBSTACLES.forEach((obstacle)=> {
+        //     CURRENT_OBSTACLES.forEach((obstacle) => {
 
-            if ((obstacle.y + obstacle.height/obstacle.divisor) >= this.henry.y 
-                && obstacle.y <= this.henry.y + (this.henry.henryHeight/this.henry.divisor) &&
-                (this.henry.x + (this.henry.henryWidth/this.henry.divisor)) >= obstacle.x &&
-                this.henry.x <= obstacle.x + (obstacle.width/obstacle.divisor)
-                ){
-                console.log((obstacle.name))
-                return(obstacle.name)
-            }
-            return false
-        })
+        //         if ((obstacle.y + obstacle.height / obstacle.divisor) >= this.henry.y
+        //             && obstacle.y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor) &&
+        //             (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= obstacle.x &&
+        //             this.henry.x <= obstacle.x + (obstacle.width / obstacle.divisor)
+        //         ) {
+        //             console.log(obstacle.name)
+        //             return obstacle.name
+        //         }
+               
+        //     })
+        // return false
+        for(let i=0; i < CURRENT_OBSTACLES.length; i++){
+            if ((CURRENT_OBSTACLES[i].y + CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor) >= this.henry.y
+                && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor) &&
+                (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= CURRENT_OBSTACLES[i].x &&
+                this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor) &&
+                CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
+                    CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
+                    return CURRENT_OBSTACLES[i].name
+                }
+        }
+        return false;
     }
    
 }

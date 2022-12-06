@@ -35,12 +35,13 @@ export default class Game {
         //this.gameView= new GameView(ctx);
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
-        this.points = 0;
+        this.krillLbs = 0;
         this.timer = 200;
-        this.winningScore = 300;
+        this.winningKrillEaten = 300;
         this.collisions=[]
         this.animate(0);
-        this.lives = 3;
+        this.health = 500;
+        this.timer = 0;
     }
 
     //game loop, if the game isnt over, check for collisions
@@ -48,73 +49,77 @@ export default class Game {
     play(){
         // show the instructions and facts
         
-        //console.log(this.collisions)
-        this.ctx.font= "25px Luckiest-Guy"
-        //this.ctx.drawRect()
-        this.ctx.fillText(`Points: ${this.points}`, 700, 40, 80)
-        //check for collisions
-            if(this.collisions.length){
-                for (let i = 0; i < this.collisions.length; i++) {
-                    if (this.collisions[i] === "KRILL"){
-                        this.incrementScore();
-                        this.increaseHenrySize();
-                    }    
-                    else if (this.collisions[i] !== false){
-                        this.decrementScore();
-                    }
-                    this.collisions.shift();
-                }
-            }
-            
-        // this.ctx.fillText("Game over!", 10, 90)
-            if(this.gameOver()){
-                if (this.winner()) {
-                    this.ctx.fillText("Congratulations, you won!", 900, 90)
-                } else {
-                    this.ctx.fillText("Oh no, you lost. Try again!", 400, 100)
-                    this.points = 0;
-                }
-            }
- 
+        let remainingKrillToEat = this.winningKrillEaten-this.krillLbs
+        this.ctx.font= "bold 25px copperplate"
+        this.ctx.fillStyle = "black"
+        this.ctx.fillText(`Health Points: ${this.health}`, 625, 30, 150)
+        this.ctx.fillStyle = "black"
+        this.ctx.fillText(`Eat ${remainingKrillToEat} more lbs of Krill!`, 20, 30, 300 )
+        this.checkCollisions();
+        this.endOfGame();
+
      }
 
+     checkCollisions(){
+         if (this.collisions.length) {
+             for (let i = 0; i < this.collisions.length; i++) {
+                 if (this.collisions[i] === "KRILL") {
+                     this.incrementKrillEaten();
+                     this.increaseHenrySize();
+                     this.incrementHealth();
+                 }
+                 else if (this.collisions[i] !== false) {
+                     this.decrementHealth();
+                 }
+                 this.collisions.shift();
+             }
+         }
+     }
+
+     endOfGame(){
+        if(this.gameOver()){
+            if (this.winner()) {
+                this.textAlign = "center";
+                this.ctx.fillText("Congratulations, you won!", 200, 200)
+                this.ctx.fillText("Henry is ready for", 200, 300)
+                this.ctx.fillText("a successful migration!", 200, 325)
+                window.cancelAnimationFrame(animate)
+            } else if (this.gameOver()) {
+                console.log('you lose')
+                this.ctx.fillText("Oh no, you lost. Try again!", 200, 100)
+                window.cancelAnimationFrame(animate)
+            }
+        }
+     }
 
     increaseHenrySize(){
-        //need to fix scaling here
-        this.henry.henryWidth *= 1.02;
-        this.henry.henryHeight *= 1.02;
+        this.henry.henryWidth *= 1.01;
+        this.henry.henryHeight *= 1.01;
     }
 
     winner(){
-            if (this.points >= this.winningScore ){
-                console.log("Congratulations, you won!")
-            }else{
-                console.log("oh no, try again!")
-            }        
+        if (this.krillLbs >= this.winningKrillEaten ){
+            return true
+        }
+        false;      
     }
 
     gameOver(){
-       if (this.points >= 300 || this.points < 0) return true;
+        if(this.krillLbs >= this.winningKrillEaten || this.health < 0) return true
         return false;
     }
 
-    threeLivesLost(){
-        if (this.lives > 0) return false
-        return true
-    }
-
-    incrementScore(){
-        this.points += 100;
+    incrementKrillEaten(){
+        this.krillLbs += 300;
     }
     
-    decrementScore(){
-        this.points -= 100
+    decrementHealth(){
+        this.health -= 100
     }
 
-    loseLife(){
-        this.lives -=1
+    incrementHealth(){
+        this.health += 20;
     }
-    
 
     animate(timeStamp) {
         const deltaTime = timeStamp - LAST_TIME;

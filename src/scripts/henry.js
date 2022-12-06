@@ -39,7 +39,7 @@ export default class Henry {
         }else{
             this.x = 600;
         }
-     requestAnimationFrame(this.moveHorizontallyLeft.bind(this));
+        requestAnimationFrame(this.moveHorizontallyLeft.bind(this));
     }
 
     moveHorizontallyRight() {
@@ -57,7 +57,7 @@ export default class Henry {
         } else {
             this.y = 0;
         }
-    requestAnimationFrame(this.moveVerticallyUp.bind(this));
+        requestAnimationFrame(this.moveVerticallyUp.bind(this));
     }
 
     moveVerticallyDown() {
@@ -66,7 +66,7 @@ export default class Henry {
         } else {
             this.y = 450;
         }
-    requestAnimationFrame(this.moveVerticallyDown.bind(this));
+        requestAnimationFrame(this.moveVerticallyDown.bind(this));
     }
 
     addListeners(){

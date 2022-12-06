@@ -37,11 +37,11 @@ export default class Game {
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.krillLbs = 0;
         this.timer = 200;
-        this.winningKrillEaten = 300;
+        this.winningKrillEaten = 3000;
         this.collisions=[]
-        this.animate(0);
         this.health = 500;
         this.timer = 0;
+        this.animate(0);
     }
 
     //game loop, if the game isnt over, check for collisions
@@ -67,6 +67,8 @@ export default class Game {
                      this.incrementKrillEaten();
                      this.increaseHenrySize();
                      this.incrementHealth();
+                     KRILL_ARR.splice(i, 1);
+                     i--;
                  }
                  else if (this.collisions[i] !== false) {
                      this.decrementHealth();
@@ -263,14 +265,9 @@ export default class Game {
                 CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
                 CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
                 this.collisions.push(CURRENT_OBSTACLES[i].name)
-                //console.log(this.collisions)
-                return CURRENT_OBSTACLES[i].name
             }
         }
         return false;
     }
-
-    //deal with collisions
-    //increment Henry's size after each collision with krill
     
 }

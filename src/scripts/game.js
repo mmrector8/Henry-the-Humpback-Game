@@ -37,7 +37,7 @@ export default class Game {
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.points = 0;
         this.timer = 200;
-        this.winningScore = 3000;
+        this.winningScore = 300;
         this.collisions=[]
         this.animate(0);
     }
@@ -48,45 +48,35 @@ export default class Game {
         // show the instructions and facts
         
         //console.log(this.collisions)
-        //display point
-           //this.animate(0);
-           console.log(this.collisions, 'collisions')
+           console.log(this.points, 'points')
         //check for collisions
-
-            // if(this.collisions.length){
-            //     for (let i = 0; i < this.collisions.length; i++) {
-            //         if (this.collisions[i] === "KRILL"){
-            //             this.increaseScore();
-            //             this.increaseHenrySize();
-            //         }    
-            //         else if (this.collisions[i] !== false){
-            //             this.decrementScore();
-            //         }
-            //         // } else if (this.collisions[i] !== false) {
-            //         //     this.decrementScore();
-            //         // }
-            //     }
-            // }
+            if(this.collisions.length){
+                for (let i = 0; i < this.collisions.length; i++) {
+                    if (this.collisions[i] === "KRILL"){
+                        this.incrementScore();
+                        this.increaseHenrySize();
+                    }    
+                    else if (this.collisions[i] !== false){
+                        this.decrementScore();
+                    }
+                    this.collisions.shift();
+                }
+            }
             
-        // if there is a collision and the name is not krill
-        // else if there is a collision and the name is krill
-        //     add points
-        //     increment henrys size
-            //this.points += 10;
         // this.ctx.fillText("Game over!", 10, 90)
 
-            // if (this.winner()){
-            //     this.ctx.fillText("Congratulations, you won!", 10, 90)
-            // } else {
-            //     this.ctx.fillText("Oh no, you lost. Try again!", 10, 90)
-            // }
+            if (this.winner()){
+                this.ctx.fillText("Congratulations, you won!", 10, 90)
+            } else {
+                this.ctx.fillText("Oh no, you lost. Try again!", 10, 90)
+            }
      }
 
 
     increaseHenrySize(){
         //need to fix scaling here
-        this.gameView.henry.henryWidth *= 1.05;
-        this.gameView.henry.henryHeight *= 1.05;
+        this.henry.henryWidth *= 1.01;
+        this.henry.henryHeight *= 1.01;
     }
 
     winner(){

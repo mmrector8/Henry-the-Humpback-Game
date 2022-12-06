@@ -7,6 +7,8 @@ import Rock from "./rock.js";
 import Whale from "./whale.js";
 import Trash from "./trash.js";
 import Submarine from "./submarine.js"
+import Obstacle from "./obstacles.js"
+import { prototype } from "events";
 
 const background = new Image();
 background.src = "./images/background.png"
@@ -63,15 +65,16 @@ export default class Game {
      checkCollisions(){
          if (this.collisions.length) {
              for (let i = 0; i < this.collisions.length; i++) {
-                 if (this.collisions[i] === "KRILL") {
+                 if (this.collisions[i] instanceof Krill) {
                      this.incrementKrillEaten();
                      this.increaseHenrySize();
                      this.incrementHealth();
-                     KRILL_ARR.splice(i, 1);
-                     i--;
+                     let krillIdx = KRILL_ARR.indexOf(this.collisions[i])
+                    KRILL_ARR.splice(krillIdx, 1)
                  }
-                 else if (this.collisions[i] !== false) {
+                 else if (this.collisions[i]) {
                      this.decrementHealth();
+                     //this.ctx.fillText("ouch!", 300, 300)
                  }
                  this.collisions.shift();
              }
@@ -107,7 +110,7 @@ export default class Game {
     }
 
     gameOver(){
-        if(this.krillLbs >= this.winningKrillEaten || this.health < 0) return true
+        if(this.krillLbs >= this.winningKrillEaten || this.health <= 0) return true
         return false;
     }
 
@@ -264,7 +267,7 @@ export default class Game {
                 this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor) &&
                 CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
                 CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
-                this.collisions.push(CURRENT_OBSTACLES[i].name)
+                this.collisions.push(CURRENT_OBSTACLES[i])
             }
         }
         return false;

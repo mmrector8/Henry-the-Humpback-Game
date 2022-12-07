@@ -78,7 +78,14 @@ export default class Game {
                      this.incrementHealth();
                      let krillIdx = KRILL_ARR.indexOf(this.collisions[i])
                     KRILL_ARR.splice(krillIdx, 1)
-                 }
+                 } 
+                //else if(this.collisions[i] instanceof Kelp){
+                //     let kelpX = this.collisions[i].x + this.collisions[i].width/2;
+                //     let kelpY = this.collisions[i].y
+                    
+                //      COLLISION_OBJS.push(new Collision(this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT, kelpX, kelpY))
+                //      this.decrementHealth();
+                //  }
                  else if (this.collisions[i]) {
                     let collisionXHenry = this.henry.x
                     let collisionXObj = this.collisions[i].x + (this.collisions[i].width)/2
@@ -287,11 +294,11 @@ export default class Game {
 
     collisionWithObject() {
         for (let i = 0; i < CURRENT_OBSTACLES.length; i++) {
-            if ((CURRENT_OBSTACLES[i].y + CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor) >= this.henry.y
-                && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor) &&
-                (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= CURRENT_OBSTACLES[i].x &&
-                this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor) &&
-                CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
+            if ((CURRENT_OBSTACLES[i].y + (CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor)) >= this.henry.y
+                && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor)
+                && (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= CURRENT_OBSTACLES[i].x 
+                && this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor) 
+                && CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
                 CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
                 this.collisions.push(CURRENT_OBSTACLES[i])
                 console.log(this.collisions)

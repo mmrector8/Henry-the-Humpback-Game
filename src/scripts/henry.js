@@ -36,7 +36,7 @@ export default class Henry {
         if(this.x > 0){
             this.x--;
         }else{
-            this.x = 600;
+            this.x = 0;
         }
         requestAnimationFrame(this.moveHorizontallyLeft.bind(this));
     }

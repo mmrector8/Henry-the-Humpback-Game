@@ -9,7 +9,7 @@ export default class Collision{
         this.posX = posX;
         this.posY = posY;
         this.collisionH = 404;
-        this.collisionW = 400;
+        this.collisionW = 395;
         this.frameX = 0;
         this.incrementer = 0;
         this.animate();
@@ -25,6 +25,10 @@ export default class Collision{
                 }
             }
             this.incrementer++
+    }
+
+    update(){
+        this.posX += 3
     }
        
 }

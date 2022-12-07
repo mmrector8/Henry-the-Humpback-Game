@@ -91,11 +91,13 @@ export default class Game {
      }
 
      handleCollisionAnimations() {
+       
         COLLISION_OBJS.forEach((collision)=> {
             collision.animate();
-            // 
+            collision.update();
         })    
      }
+
 
      endOfGame(){
         if(this.gameOver()){
@@ -149,7 +151,6 @@ export default class Game {
         this.background.animateBackground();
         this.background.updatePosition();
         this.henry.animateHenry();
-       // this.collisionAnimation.animate();
         this.addKrill(deltaTime);
         this.addKelp(deltaTime);
         this.addRocks(deltaTime);

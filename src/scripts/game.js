@@ -6,7 +6,8 @@ import Kelp from "./kelp.js";
 import Rock from "./rock.js";
 import Whale from "./whale.js";
 import Trash from "./trash.js";
-import Submarine from "./submarine.js"
+import Submarine from "./submarine.js";
+import Collision from "./collision.js";
 
 const background = new Image();
 background.src = "./images/background.png"
@@ -28,6 +29,7 @@ let SUB_TIMER = 0;
 const SUB_ARR = [];
 let OBSTACLE_TIMER = 0;
 let CURRENT_OBSTACLES = [];
+let COLLISION_OBJS =[];
 
 export default class Game {
     constructor(ctx){
@@ -35,6 +37,7 @@ export default class Game {
         //this.gameView= new GameView(ctx);
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
+        this.collisionAnimation = new Collision(ctx, CANVAS_WIDTH, CANVAS_HEIGHT, 200, 200)
         this.krillLbs = 0;
         this.timer = 200;
         this.winningKrillEaten = 3000;
@@ -42,12 +45,9 @@ export default class Game {
         this.health = 500;
         this.timer = 0;
         this.startGame();
-        //this.animate(0);
     }
 
-    //game loop, if the game isnt over, check for collisions
     startGame(){
-        //this.background.animateBackground();
         window.addEventListener('keydown', ()=>{
             let display = document.getElementById("startImage")
             display.style.display = "none"
@@ -65,8 +65,8 @@ export default class Game {
         this.ctx.fillStyle = "black"
         this.ctx.fillText(`Eat ${remainingKrillToEat} more lbs of Krill!`, 20, 30, 300 )
         this.checkCollisions();
+        this.handleCollisionAnimations();
         this.endOfGame();
-
      }
 
      checkCollisions(){
@@ -80,15 +80,21 @@ export default class Game {
                     KRILL_ARR.splice(krillIdx, 1)
                  }
                  else if (this.collisions[i]) {
-                     this.decrementHealth();
+                    let collisionX = this.henry.x
+                    let collisionY = this.henry.y
+                    COLLISION_OBJS.push(new Collision(this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT, collisionX, collisionY))
+                    this.decrementHealth();
                  }
                  this.collisions.shift();
              }
          }
      }
 
-     ouchMessage(){
-        this.setTimeOut(()=>{this.ctx.fillText("ouch!", 300, 300)},2000)
+     handleCollisionAnimations() {
+        COLLISION_OBJS.forEach((collision)=> {
+            collision.animate();
+            // 
+        })    
      }
 
      endOfGame(){
@@ -143,6 +149,7 @@ export default class Game {
         this.background.animateBackground();
         this.background.updatePosition();
         this.henry.animateHenry();
+       // this.collisionAnimation.animate();
         this.addKrill(deltaTime);
         this.addKelp(deltaTime);
         this.addRocks(deltaTime);
@@ -152,6 +159,7 @@ export default class Game {
         this.obstacleArray();
         this.collisionWithObject();
         this.play();
+        
         requestAnimationFrame(this.animate.bind(this))
     }
 

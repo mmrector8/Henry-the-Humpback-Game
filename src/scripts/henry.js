@@ -1,7 +1,6 @@
 const henry = new Image();
 henry.src = './images/highdefHenry.png'
-const background = new Image();
-background.src = './images/background.png'
+
 
 const KEYS = []
 

@@ -80,9 +80,16 @@ export default class Game {
                     KRILL_ARR.splice(krillIdx, 1)
                  }
                  else if (this.collisions[i]) {
-                    let collisionX = this.henry.x
-                    let collisionY = this.henry.y
-                    COLLISION_OBJS.push(new Collision(this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT, collisionX, collisionY))
+                    let collisionXHenry = this.henry.x
+                    let collisionXObj = this.collisions[i].x + (this.collisions[i].width)/2
+                     let collisionYHenry = this.henry.y
+                     let collisionYObj = this.collisions[i].y
+
+                     let avgX = (collisionXHenry + collisionXObj)/2
+                     let avgY = (collisionYHenry + collisionYObj)/2
+
+
+                    COLLISION_OBJS.push(new Collision(this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT, avgX, avgY))
                     this.decrementHealth();
                  }
                  this.collisions.shift();
@@ -116,8 +123,8 @@ export default class Game {
      }
 
     increaseHenrySize(){
-        this.henry.henryWidth *= 1.01;
-        this.henry.henryHeight *= 1.01;
+        this.henry.henryWidth *= 1.015;
+        this.henry.henryHeight *= 1.015;
     }
 
     winner(){
@@ -287,6 +294,7 @@ export default class Game {
                 CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
                 CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
                 this.collisions.push(CURRENT_OBSTACLES[i])
+                console.log(this.collisions)
             }
         }
         return false;

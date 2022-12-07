@@ -28,7 +28,7 @@ export default class Collision{
     }
 
     update(){
-        this.posX += 3
+        this.posX += 5
     }
        
 }

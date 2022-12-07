@@ -43,7 +43,7 @@ export default class Game {
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.krillLbs = 0;
         this.timer = 200;
-        this.winningKrillEaten = 3000;
+        this.winningKrillEaten = 300;
         this.collisions=[]
         this.health = 500;
         this.timer = 0;
@@ -51,16 +51,19 @@ export default class Game {
     }
 
     startGame(){
-        window.addEventListener('keydown', ()=>{
-            let display = document.getElementById("startImage")
-            display.style.display = "none"
-            this.animate(0)
+        let display = document.getElementById("startImage")
+        window.addEventListener('keydown',()=>{
+            let instructions = document.getElementById("instructions")
+            instructions.style.display = "none"
+            window.addEventListener('keydown', () => {
+                display.style.display = "none"
+                this.animate(0)
+            }, { once: true })
         }, {once: true})
+     
     }
 
-    play(){
-        // show the instructions and facts
-        
+    play(){        
         let remainingKrillToEat = this.winningKrillEaten-this.krillLbs
         this.ctx.font= "bold 25px copperplate"
         this.ctx.fillStyle = "black"
@@ -92,8 +95,6 @@ export default class Game {
                     continue;
                  }
                  else if (this.collisions[i]) {
-                    console.log(this.collisions[i], "current collisions")
-                    console.log(this.collisions, "collisions array")
                     this.decrementHealth();
                     let collisionXHenry = this.henry.x
                     let collisionXObj = this.collisions[i].x + (this.collisions[i].width)/2
@@ -107,7 +108,6 @@ export default class Game {
                     COLLISION_OBJS.push(new Collision(this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT, avgX, avgY))
                  }
                  this.collisions.shift();
-                 console.log(this.collisions, "item removed")
              }
          }
      }
@@ -125,9 +125,9 @@ export default class Game {
         if(this.gameOver()){
             if (this.winner()) {
                 this.textAlign = "center";
-                this.ctx.fillText("Congratulations, you won!", 300, 200)
-                this.ctx.fillText("Henry is ready for", 200, 300)
-                this.ctx.fillText("a successful migration!", 200, 325)
+                this.ctx.fillText("Congratulations, you won!", 250, 200)
+                this.ctx.fillText("Henry is ready for", 250, 300)
+                this.ctx.fillText("a successful migration!", 250, 325)
                 window.cancelAnimationFrame(animate)
             } else if (this.gameOver()) {
                 this.health = 0;

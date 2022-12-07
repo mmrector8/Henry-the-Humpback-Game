@@ -7,6 +7,7 @@ import Whale from "./whale.js";
 import Trash from "./trash.js";
 import Submarine from "./submarine.js";
 import Collision from "./collision.js";
+import Net from "./net.js"
 
 const background = new Image();
 background.src = "./images/background.png"
@@ -26,6 +27,8 @@ let TRASH_TIMER = 0;
 const TRASH_ARR = [];
 let SUB_TIMER = 0;
 const SUB_ARR = [];
+let NET_TIMER = 0;
+const NET_ARR =[];
 let OBSTACLE_TIMER = 0;
 let CURRENT_OBSTACLES = [];
 let COLLISION_OBJS =[];
@@ -164,6 +167,7 @@ export default class Game {
         this.addOtherWhales(deltaTime);
         this.addTrash(deltaTime)
         this.addSubs(deltaTime);
+        this.addNet(deltaTime);
         this.obstacleArray();
         this.collisionWithObject();
         this.play();
@@ -279,8 +283,26 @@ export default class Game {
         })
     }
 
+    addNet(deltaTime) {
+        let netInterval = Math.floor(Math.random() * 50000);
+        let randomX = Math.floor(Math.random() * (CANVAS_HEIGHT - 375) + 0)
+        if (NET_TIMER > netInterval) {
+            NET_ARR.push(new Net(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, randomX, -5))
+            NET_TIMER = 0;
+        } else {
+            NET_TIMER += deltaTime;
+        }
+        NET_ARR.forEach((net) => {
+            net.animate();
+            net.updatePos();
+            if (net.x > CANVAS_WIDTH + 100) {
+                NET_ARR.shift()
+            }
+        })
+    }
+
     obstacleArray() {
-        CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR)
+        CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR).concat(NET_ARR)
         return CURRENT_OBSTACLES
 
     }

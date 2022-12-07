@@ -200,7 +200,7 @@ export default class Game {
     }
 
     addKelp(deltaTime) {
-        let kelpInterval = Math.floor(Math.random() * 100000);
+        let kelpInterval = Math.floor(Math.random() * 900000);
         if (KELP_TIMER > kelpInterval) {
             KELP_ARR.push(new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, 385))
             KELP_TIMER = 0;
@@ -217,7 +217,7 @@ export default class Game {
     }
 
     addRocks(deltaTime) {
-        let rockInterval = Math.floor(Math.random() * 8000000);
+        let rockInterval = Math.floor(Math.random() * 6000000);
         if (ROCK_TIMER > rockInterval) {
             ROCK_ARR.push(new Rock(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -100, 385))
             ROCK_TIMER = 0;
@@ -234,7 +234,7 @@ export default class Game {
     }
 
     addOtherWhales(deltaTime) {
-        let whaleInterval = Math.floor(Math.random() * 6000000);
+        let whaleInterval = Math.floor(Math.random() * 9000000);
         let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 340) + 0)
         if (WHALE_TIMER > whaleInterval) {
             WHALE_ARR.push(new Whale(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -30, randomY))
@@ -253,7 +253,7 @@ export default class Game {
     }
 
     addTrash(deltaTime) {
-        let trashInterval = Math.floor(Math.random() * 4000000);
+        let trashInterval = Math.floor(Math.random() * 8000000);
         let randomX = Math.floor(Math.random() * (CANVAS_WIDTH - 600) + 0)
         let trashIdx = Math.floor(Math.random() * 3)
         if (TRASH_TIMER > trashInterval) {
@@ -290,7 +290,7 @@ export default class Game {
     }
 
     addNet(deltaTime) {
-        let netInterval = Math.floor(Math.random() * 9000000);
+        let netInterval = Math.floor(Math.random() * 10000000);
         let randomX = Math.floor(Math.random() * (CANVAS_HEIGHT - 375) + 0)
         if (NET_TIMER > netInterval) {
             NET_ARR.push(new Net(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, randomX, -5))
@@ -308,7 +308,7 @@ export default class Game {
     }
 
     addCrab(deltaTime) {
-        let crabInterval = Math.floor(Math.random() * 900000);
+        let crabInterval = Math.floor(Math.random() * 1000000);
         if (CRAB_TIMER > crabInterval) {
             CRAB_ARR.push(new Crab(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -100, CANVAS_HEIGHT-75))
             CRAB_TIMER = 0;

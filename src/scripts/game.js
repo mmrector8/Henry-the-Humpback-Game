@@ -194,7 +194,7 @@ export default class Game {
     }
 
     addKelp(deltaTime) {
-        let kelpInterval = Math.floor(Math.random() * 500000);
+        let kelpInterval = Math.floor(Math.random() * 100000);
         if (KELP_TIMER > kelpInterval) {
             KELP_ARR.push(new Kelp(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -10, 385))
             KELP_TIMER = 0;
@@ -266,7 +266,7 @@ export default class Game {
     }
 
     addSubs(deltaTime) {
-        let subInterval = Math.floor(Math.random() * 5000000);
+        let subInterval = Math.floor(Math.random() * 50000000);
         let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 375) + 0)
         if (SUB_TIMER > subInterval) {
             SUB_ARR.push(new Submarine(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, 0, randomY))
@@ -284,7 +284,7 @@ export default class Game {
     }
 
     addNet(deltaTime) {
-        let netInterval = Math.floor(Math.random() * 50000);
+        let netInterval = Math.floor(Math.random() * 9000000);
         let randomX = Math.floor(Math.random() * (CANVAS_HEIGHT - 375) + 0)
         if (NET_TIMER > netInterval) {
             NET_ARR.push(new Net(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, randomX, -5))
@@ -318,7 +318,6 @@ export default class Game {
                     && CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
                     CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
                     this.collisions.push(CURRENT_OBSTACLES[i])
-                    console.log(this.collisions)
                 }
             }
            

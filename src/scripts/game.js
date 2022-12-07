@@ -82,6 +82,7 @@ export default class Game {
      addMuteAudioButton(){
         let audioButton = document.getElementById('mute')
         audioButton.addEventListener('click', ()=>{
+            console.log('event')
             if(audioButton.innerHTML === 'Mute Audio'){
                 this.backgroundAudio.pause()
                 audioButton.innerHTML = 'Unmute'
@@ -92,7 +93,6 @@ export default class Game {
 
         })
      }
-
      checkCollisions(){
          if (this.collisions.length) {
              for (let i = 0; i < this.collisions.length; i++) {
@@ -141,6 +141,8 @@ export default class Game {
 
      endOfGame(){
         if(this.gameOver()){
+            let bodyOverflow = document.getElementById("body")
+            bodyOverflow.style.overflow = "visible"
             if (this.winner()) {
                 this.textAlign = "center";
                 this.ctx.fillText("Congratulations, you won!", 250, 200)

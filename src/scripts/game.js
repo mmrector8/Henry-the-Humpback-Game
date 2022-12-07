@@ -8,6 +8,7 @@ import Trash from "./trash.js";
 import Submarine from "./submarine.js";
 import Collision from "./collision.js";
 import Net from "./net.js"
+import Crab from "./crab.js"
 
 const background = new Image();
 background.src = "./images/background.png"
@@ -29,6 +30,8 @@ let SUB_TIMER = 0;
 const SUB_ARR = [];
 let NET_TIMER = 0;
 const NET_ARR =[];
+let CRAB_TIMER = 0;
+const CRAB_ARR = [];
 let OBSTACLE_TIMER = 0;
 let CURRENT_OBSTACLES = [];
 let COLLISION_OBJS =[];
@@ -80,6 +83,8 @@ export default class Game {
                     KRILL_ARR.splice(krillIdx, 1)
                  } 
                 else if(this.collisions[i] instanceof Kelp){
+                    continue;
+                 } else if(this.collisions[i] instanceof Crab){
                     continue;
                  }
                  else if (this.collisions[i]) {
@@ -168,6 +173,7 @@ export default class Game {
         this.addTrash(deltaTime)
         this.addSubs(deltaTime);
         this.addNet(deltaTime);
+        this.addCrab(deltaTime)
         this.obstacleArray();
         this.collisionWithObject();
         this.play();
@@ -297,6 +303,23 @@ export default class Game {
             net.updatePos();
             if (net.x > CANVAS_WIDTH + 100) {
                 NET_ARR.shift()
+            }
+        })
+    }
+
+    addCrab(deltaTime) {
+        let crabInterval = Math.floor(Math.random() * 900000);
+        if (CRAB_TIMER > crabInterval) {
+            CRAB_ARR.push(new Crab(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, -100, CANVAS_HEIGHT-75))
+            CRAB_TIMER = 0;
+        } else {
+            CRAB_TIMER += deltaTime;
+        }
+        CRAB_ARR.forEach((crab) => {
+            crab.animate();
+            crab.updateCrab();
+            if (crab.x > CANVAS_WIDTH + 100) {
+                CRAB_ARR.shift()
             }
         })
     }

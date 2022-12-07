@@ -19,8 +19,6 @@ export default class Henry {
     }
 
     animateHenry() {
-        //this.fillStyle = "white"
-        //this.ctx.fillRect(this.x, this.y, this.henryWidth, this.henryHeight)
         this.ctx.drawImage(henry, (this.frameX * 527), 212, 527, 212, this.x, this.y, this.henryWidth/3, this.henryHeight/3)
 
         //this.ctx.drawImage(henry, (this.frameX * 360), 105, 360, 105, this.x, this.y, this.henryWidth/1.5, this.henryHeight/1.5);

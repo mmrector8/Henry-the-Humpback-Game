@@ -79,19 +79,21 @@ export default class Game {
                      this.incrementKrillEaten();
                      this.increaseHenrySize();
                      this.incrementHealth();
-                     console.log(KRILL_ARR, "before splice")
                      let krillIdx = KRILL_ARR.indexOf(this.collisions[i])
                     if (krillIdx >= 0){
                         KRILL_ARR.splice(krillIdx, 1)
                     }
-                    console.log(KRILL_ARR, "after splice")
                  } 
                 else if(this.collisions[i] instanceof Kelp){
-                    continue;
+                    this.collisions.shift();
+                     continue;
                  } else if(this.collisions[i] instanceof Crab){
                     continue;
                  }
                  else if (this.collisions[i]) {
+                    console.log(this.collisions[i], "current collisions")
+                    console.log(this.collisions, "collisions array")
+                    this.decrementHealth();
                     let collisionXHenry = this.henry.x
                     let collisionXObj = this.collisions[i].x + (this.collisions[i].width)/2
                      let collisionYHenry = this.henry.y
@@ -102,9 +104,9 @@ export default class Game {
 
 
                     COLLISION_OBJS.push(new Collision(this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT, avgX, avgY))
-                    this.decrementHealth();
                  }
                  this.collisions.shift();
+                 console.log(this.collisions, "item removed")
              }
          }
      }

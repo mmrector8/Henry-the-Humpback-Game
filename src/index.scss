@@ -1,5 +1,6 @@
 body {
     overflow: hidden;
+    background-color: rgb(167, 232, 249);
 }
 
 .title, .canvas {
@@ -12,7 +13,7 @@ body {
 
 
 #titleText {
-    font-size: 38px;
+    font-size: 42px;
     font-family: 'Luckiest Guy', cursive;
     color: rgb(0, 149, 255);
     -webkit-text-stroke: 1.5px black;

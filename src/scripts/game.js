@@ -88,6 +88,7 @@ export default class Game {
                     this.collisions.shift();
                      continue;
                  } else if(this.collisions[i] instanceof Crab){
+                    this.collisions.shift();
                     continue;
                  }
                  else if (this.collisions[i]) {
@@ -154,7 +155,7 @@ export default class Game {
     }
 
     incrementKrillEaten(){
-        this.krillLbs += 100;
+        this.krillLbs += 150;
     }
     
     decrementHealth(){

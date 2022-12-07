@@ -43,21 +43,25 @@ export default class Game {
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.krillLbs = 0;
         this.timer = 200;
-        this.winningKrillEaten = 300;
+        this.winningKrillEaten = 3000;
         this.collisions=[]
         this.health = 500;
         this.timer = 0;
+        this.backgroundAudio = document.getElementById("background-music")
+        this.addMuteAudioButton();
         this.startGame();
     }
 
     startGame(){
         let display = document.getElementById("startImage")
+        let instructions = document.getElementById("instructions")
         window.addEventListener('keydown',()=>{
-            let instructions = document.getElementById("instructions")
-            instructions.style.display = "none"
+            display.style.display = "none"
+            this.backgroundAudio.play();
             window.addEventListener('keydown', () => {
-                display.style.display = "none"
+                instructions.style.display = "none"
                 this.animate(0)
+               
             }, { once: true })
         }, {once: true})
      
@@ -73,6 +77,20 @@ export default class Game {
         this.checkCollisions();
         this.handleCollisionAnimations();
         this.endOfGame();
+     }
+
+     addMuteAudioButton(){
+        let audioButton = document.getElementById('mute')
+        audioButton.addEventListener('click', ()=>{
+            if(audioButton.innerHTML === 'Mute Audio'){
+                this.backgroundAudio.pause()
+                audioButton.innerHTML = 'Unmute'
+            }else{
+                this.backgroundAudio.play();
+                audioButton.innerHTML = "Mute Audio"
+            }
+
+        })
      }
 
      checkCollisions(){
@@ -163,7 +181,7 @@ export default class Game {
     }
 
     incrementHealth(){
-        this.health += 20;
+        this.health += 10;
     }
 
     animate(timeStamp) {

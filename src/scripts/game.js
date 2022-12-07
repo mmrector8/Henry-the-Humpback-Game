@@ -79,8 +79,12 @@ export default class Game {
                      this.incrementKrillEaten();
                      this.increaseHenrySize();
                      this.incrementHealth();
+                     console.log(KRILL_ARR, "before splice")
                      let krillIdx = KRILL_ARR.indexOf(this.collisions[i])
-                    KRILL_ARR.splice(krillIdx, 1)
+                    if (krillIdx >= 0){
+                        KRILL_ARR.splice(krillIdx, 1)
+                    }
+                    console.log(KRILL_ARR, "after splice")
                  } 
                 else if(this.collisions[i] instanceof Kelp){
                     continue;
@@ -148,7 +152,7 @@ export default class Game {
     }
 
     incrementKrillEaten(){
-        this.krillLbs += 200;
+        this.krillLbs += 100;
     }
     
     decrementHealth(){

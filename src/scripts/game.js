@@ -340,7 +340,7 @@ export default class Game {
             if(CURRENT_OBSTACLES[i].x < 700 && this.henry.x < 700){
                 if ((CURRENT_OBSTACLES[i].y + (CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor)) >= this.henry.y
                     && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor)
-                    && (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= CURRENT_OBSTACLES[i].x
+                    && (this.henry.x + (this.henry.henryWidth/ this.henry.divisor)) >= CURRENT_OBSTACLES[i].x
                     && this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor)
                     && CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
                     CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();

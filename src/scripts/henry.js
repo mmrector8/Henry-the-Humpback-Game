@@ -1,8 +1,6 @@
 const henry = new Image();
-henry.src = './images/highdefHenry.png'
+henry.src = './images/newHenry.png'
 
-
-const KEYS = []
 
 export default class Henry {
     constructor(CANVAS_WIDTH, CANVAS_HEIGHT, ctx){
@@ -10,18 +8,22 @@ export default class Henry {
         this.ctx = ctx;
         this.CANVAS_WIDTH = CANVAS_WIDTH;
         this.CANVAS_HEIGHT = CANVAS_HEIGHT;
-        this.henryWidth = 360;
-        this.henryHeight = 105;
+        this.henryWidth = 527;
+        this.henryHeight = 212;
         this.frameX= 1;
         this.incrementer =0;
-        this.divisor = 1.5;
+        this.divisor = 3;
         this.y = 250;
         this.x =575;
         this.addListeners();
     }
 
     animateHenry() {
-        this.ctx.drawImage(henry, (this.frameX * 360), 105, 360, 105, this.x, this.y, this.henryWidth/1.5, this.henryHeight/1.5);
+        //this.fillStyle = "white"
+        //this.ctx.fillRect(this.x, this.y, this.henryWidth, this.henryHeight)
+        this.ctx.drawImage(henry, (this.frameX * 527), 212, 527, 212, this.x, this.y, this.henryWidth/3, this.henryHeight/3)
+
+        //this.ctx.drawImage(henry, (this.frameX * 360), 105, 360, 105, this.x, this.y, this.henryWidth/1.5, this.henryHeight/1.5);
         if (this.incrementer % 20 === 0) {
             if (this.frameX < 4) {
                 this.frameX++;

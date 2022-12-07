@@ -1,4 +1,3 @@
-import GameView from "./game_view.js"
 import Henry from "./henry.js";
 import Krill from "./krill.js";
 import Background from "./background.js";
@@ -34,10 +33,8 @@ let COLLISION_OBJS =[];
 export default class Game {
     constructor(ctx){
         this.ctx = ctx;
-        //this.gameView= new GameView(ctx);
         this.henry = new Henry(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
-        this.collisionAnimation = new Collision(ctx, CANVAS_WIDTH, CANVAS_HEIGHT, 200, 200)
         this.krillLbs = 0;
         this.timer = 200;
         this.winningKrillEaten = 3000;
@@ -79,13 +76,9 @@ export default class Game {
                      let krillIdx = KRILL_ARR.indexOf(this.collisions[i])
                     KRILL_ARR.splice(krillIdx, 1)
                  } 
-                //else if(this.collisions[i] instanceof Kelp){
-                //     let kelpX = this.collisions[i].x + this.collisions[i].width/2;
-                //     let kelpY = this.collisions[i].y
-                    
-                //      COLLISION_OBJS.push(new Collision(this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT, kelpX, kelpY))
-                //      this.decrementHealth();
-                //  }
+                else if(this.collisions[i] instanceof Kelp){
+                    continue;
+                 }
                  else if (this.collisions[i]) {
                     let collisionXHenry = this.henry.x
                     let collisionXObj = this.collisions[i].x + (this.collisions[i].width)/2
@@ -130,8 +123,8 @@ export default class Game {
      }
 
     increaseHenrySize(){
-        this.henry.henryWidth *= 1.015;
-        this.henry.henryHeight *= 1.015;
+        this.henry.henryWidth *= 1.02;
+        this.henry.henryHeight *= 1.02;
     }
 
     winner(){
@@ -147,7 +140,7 @@ export default class Game {
     }
 
     incrementKrillEaten(){
-        this.krillLbs += 300;
+        this.krillLbs += 200;
     }
     
     decrementHealth(){
@@ -269,7 +262,7 @@ export default class Game {
     }
 
     addSubs(deltaTime) {
-        let subInterval = Math.floor(Math.random() * 50000000);
+        let subInterval = Math.floor(Math.random() * 5000000);
         let randomY = Math.floor(Math.random() * (CANVAS_HEIGHT - 375) + 0)
         if (SUB_TIMER > subInterval) {
             SUB_ARR.push(new Submarine(CANVAS_WIDTH, CANVAS_HEIGHT, this.ctx, 0, randomY))
@@ -294,15 +287,19 @@ export default class Game {
 
     collisionWithObject() {
         for (let i = 0; i < CURRENT_OBSTACLES.length; i++) {
-            if ((CURRENT_OBSTACLES[i].y + (CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor)) >= this.henry.y
-                && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor)
-                && (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= CURRENT_OBSTACLES[i].x 
-                && this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor) 
-                && CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
-                CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
-                this.collisions.push(CURRENT_OBSTACLES[i])
-                console.log(this.collisions)
+
+            if(CURRENT_OBSTACLES[i].x < 700 && this.henry.x < 700){
+                if ((CURRENT_OBSTACLES[i].y + (CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor)) >= this.henry.y
+                    && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor)
+                    && (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= CURRENT_OBSTACLES[i].x
+                    && this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor)
+                    && CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
+                    CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
+                    this.collisions.push(CURRENT_OBSTACLES[i])
+                    console.log(this.collisions)
+                }
             }
+           
         }
         return false;
     }

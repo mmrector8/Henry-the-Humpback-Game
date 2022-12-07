@@ -7,7 +7,7 @@ export default class Rock extends Obstacle {
         super(CANVAS_WIDTH, CANVAS_HEIGHT, ctx, x, y);
         this.width = 221;
         this.height = 278;
-        this.divisor = 2;
+        this.divisor = 1;
         this.name = 'rock';
     }
 

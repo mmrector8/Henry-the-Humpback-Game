@@ -68,6 +68,7 @@ export default class Henry {
 
     addListeners(){
         window.addEventListener("keydown", (e)=>{
+            e.preventDefault();
             if(e.key === "ArrowLeft"){
                 this.moveHorizontallyLeft();
             } else if (e.key === "ArrowRight") {

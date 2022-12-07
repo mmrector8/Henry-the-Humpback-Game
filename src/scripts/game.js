@@ -54,44 +54,64 @@ export default class Game {
 
     startGame(){
         let display = document.getElementById("startImage")
-        let instructions = document.getElementById("instructions")
-        window.addEventListener('keydown',()=>{
-            display.style.display = "none"
-            this.backgroundAudio.play();
             window.addEventListener('keydown', () => {
-                instructions.style.display = "none"
+                this.backgroundAudio.play();
+                display.style.display = "none"
                 this.animate(0)
-               
             }, { once: true })
-        }, {once: true})
      
     }
 
     play(){        
-        let remainingKrillToEat = this.winningKrillEaten-this.krillLbs
+        
         this.ctx.font= "bold 25px copperplate"
         this.ctx.fillStyle = "black"
-        this.ctx.fillText(`Health Points: ${this.health}`, 625, 30, 150)
-        this.ctx.fillStyle = "black"
-        this.ctx.fillText(`Eat ${remainingKrillToEat} more lbs of Krill!`, 20, 30, 300 )
+        this.ctx.fillText("Health Points:", 350, 30, 150)
+        this.addHealthColor();
+        this.ctx.fillText(`${this.health}`, 510,30, 150)
+        this.addKrillToEat();
         this.checkCollisions();
         this.handleCollisionAnimations();
         this.endOfGame();
      }
 
+     addKrillToEat(){
+         let remainingKrillToEat = this.winningKrillEaten - this.krillLbs
+         this.ctx.fillStyle = "black"
+         this.ctx.fillText("Eat:", 20, 30, 50)
+         if(remainingKrillToEat >= 2500){
+             this.ctx.fillStyle = "red"
+         } else if(remainingKrillToEat <2500 && remainingKrillToEat > 100){
+            this.ctx.fillStyle = "yellow"
+         }else{
+            this.ctx.fillStyle = "green"
+         }
+         this.ctx.fillText(`${remainingKrillToEat}`, 80, 30, 150)
+         this.ctx.fillStyle = "black"
+         this.ctx.fillText("more lbs of Krill!", 150, 30, 175)
+     }
+
+     addHealthColor(){
+         if (this.health >= 350) {
+             return this.ctx.fillStyle = "green"
+         } else if (this.health > 150 && this.health < 350) {
+             return this.ctx.fillStyle = "yellow"
+         } else {
+            return this.ctx.fillStyle = "red"
+         }
+     }
+
      addMuteAudioButton(){
         let audioButton = document.getElementById('mute')
         audioButton.addEventListener('click', ()=>{
-            console.log('event')
-            if(audioButton.innerHTML === 'Mute Audio'){
-                this.backgroundAudio.pause()
-                audioButton.innerHTML = 'Unmute'
-            }else{
+            if(audioButton.innerHTML === "Unmute"){
                 this.backgroundAudio.play();
-                audioButton.innerHTML = "Mute Audio"
+                audioButton.innerHTML = "Mute";
+            }else {
+                this.backgroundAudio.pause();
+                audioButton.innerHTML = "Unmute";
             }
-
-        })
+        });
      }
      checkCollisions(){
          if (this.collisions.length) {

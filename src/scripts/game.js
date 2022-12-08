@@ -45,7 +45,7 @@ export default class Game {
         this.timer = 200;
         this.winningKrillEaten = 3000;
         this.collisions=[]
-        this.health = 10;
+        this.health = 500;
         this.timer = 0;
         this.backgroundAudio = document.getElementById("background-music");
         this.startAnimation = false;

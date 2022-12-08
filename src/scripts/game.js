@@ -266,7 +266,7 @@ export default class Game {
         } else if (this.startAnimation=== false){
             this.ctx.font = "bold 35px copperplate"
             this.ctx.fillStyle ="#ffca66"
-            this.ctx.fillText("           Game paused", 170, 280, 600)
+            this.ctx.fillText("              Game paused", 170, 280, 600)
             this.ctx.fillText("Press space bar to continue", 170, 340, 600)
             window.cancelAnimationFrame(animate)
         }

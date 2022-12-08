@@ -60,11 +60,9 @@ export default class Game {
                 display.style.display = "none"
                 this.animate(0)
             }, { once: true })
-     
     }
 
     play(){        
-        
         this.ctx.font= "bold 25px copperplate"
         this.ctx.fillStyle = "black"
         this.ctx.fillText("Health Points:", 340, 30, 150)

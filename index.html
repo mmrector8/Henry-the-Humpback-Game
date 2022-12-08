@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="./images/favicon.png">
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js" defer></script>
+    <script src="https://kit.fontawesome.com/851b20440f.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
@@ -16,27 +17,31 @@
     </style>
 </head>
 <body id ="body">
-    <div id="morgan-links">
-         <a href="https://github.com/mmrector8?tab=repositories" class="morgan">GitHub</a>
-        <a href="https://www.linkedin.com/in/morgan-marie-rector/" class="morgan">LinkedIn</a>
-    </div>
+    <header>
+        <div class="title" id="title">
+            <h1 id="titleText"> Henry, the Humpback Whale Game</h1>
+        </div>
+        <nav>
+            <div class="morgan-links">
+                <a href="https://github.com/mmrector8?tab=repositories" class="morgan"><i
+                        class="fa-brands fa-github icon-large"></i></a>
+                <a href="https://www.linkedin.com/in/morgan-marie-rector/" class="morgan"><i
+                        class="fa-brands fa-linkedin icon-large"></i></a>
+            </div>
+            
+        </nav>
+    </header>
 
-    <div class="title" id = "title">
-        <h1 id ="titleText"> Henry, the Humpback Whale Game</h1>
-    </div>  
 
-    
     <audio id="background-music" loop src = "./audio/henrybackground.mp3"></audio>
 
     <div class = "canvas">
         <canvas id="game-canvas" width="800" height="600"></canvas>
         <div id="audio-controls">
             <button id="open-instructions">Instructions</button>
-            <button id="mute"> Mute</button>
+            <button id="mute">Mute</button>
         </div>
         <img src="./images/newgame.png" id="startImage" width="800" height="600">
-
-        <!--beginning of modal-->
 
             <div class ="modal" id ="modal">
                     <div class ="modal-header">
@@ -51,7 +56,7 @@
                         to prepare for their
                         migration south to Mexico. <br> <br> Your job is to help Henry, a young humpback whale, 
                         eat 3000 lbs of krill and avoid obstacles in his path. <br><br>
-                        Use the keyboard arrows to control Henry as he swims and make sure to keep track of Henry's health level. He will gain health by eating and lose health by colliding with obstacles.
+                        Use the keyboard arrows to control Henry as he swims and make sure to keep track of Henry's health level.<br> <br> He will gain health by eating and lose health by colliding with obstacles.
                         <br><br>Kelp and crabs will not hurt Henry!
                     </p>
                     </div>

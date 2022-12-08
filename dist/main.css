@@ -5,12 +5,22 @@ body {
   background-color: rgb(167, 232, 249);
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
 .title, .canvas {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   position: relative;
+}
+
+.title {
+  margin: auto;
 }
 
 .canvas {
@@ -78,10 +88,22 @@ body {
   color: #ffca66;
 }
 
-#morgan-links {
+.morgan-links {
   display: flex;
   flex-direction: column;
-  position: absolute;
+}
+
+nav a {
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+i {
+  color: rgb(0, 149, 255);
+}
+
+i:hover {
+  color: black;
 }
 
 #github, #linkedin {
@@ -94,7 +116,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
-  border: 1px solid black;
+  border: 3px solid black;
   border-radius: 20px;
   z-index: 50;
   background-color: rgb(0, 149, 255);
@@ -111,9 +133,10 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  font-family: copperplate;
+  font-family: "Luckiest Guy", cursive;
   font-weight: bold;
   color: #ffca66;
+  -webkit-text-stroke: 1px black;
   font-size: 48px;
   border-bottom: 2px solid black;
 }
@@ -129,7 +152,11 @@ body {
 }
 
 #instruction-info {
-  font-size: 20px;
-  padding: 20px;
-  font-family: arial;
+  font-size: 17.5px;
+  padding: 8px;
+  font-family: courier;
+}
+
+.modal-title {
+  padding: 12px;
 }

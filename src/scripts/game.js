@@ -244,11 +244,11 @@ export default class Game {
 
             
     animate(timeStamp) {
-        if (this.gameOverVar) {
-            window.cancelAnimationFrame(animate)
-        }
         requestAnimationFrame(this.animate.bind(this))
-        if (this.startAnimation) {
+        if (this.gameOverVar) {
+            window.cancelAnimationFrame(this.animate)
+        }
+        else if (this.startAnimation) {
             const deltaTime = timeStamp - LAST_TIME;
             LAST_TIME = timeStamp;
             this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -267,13 +267,14 @@ export default class Game {
             this.collisionWithObject();
             this.play();
 
-        } else if (this.startAnimation === false && this.gameStarted === true) {
+        } 
+        else if (this.startAnimation === false && this.gameStarted === true) {
             this.ctx.font = "bold 35px copperplate"
             this.ctx.fillStyle = "#ffca66"
             this.ctx.fillText("              Game paused", 170, 280, 600)
             this.ctx.fillText("Press space bar to continue", 170, 340, 600)
-            window.cancelAnimationFrame(animate)
-        }
+            window.cancelAnimationFrame(this.animate)
+        } 
 
     }
          

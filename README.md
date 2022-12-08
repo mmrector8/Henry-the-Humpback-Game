@@ -9,7 +9,7 @@ As the game progresses and Henry eats, he will grow in size, thus making it more
 
 **Here are the general rules:**
 ***
-* You will control Henry using your keyboard. 
+* You control Henry the humpback using your keyboard. 
 * Use the left arrow to move horizontally, the up arrow to move vertically, and the down arrow to move down the water column.
 * You need to eat 3,000 lbs of krill. Humpbacks can eat up to 3,000 lbs of food a day and feed throughout the summer and fall in Monterey!
 * Make sure you avoid any trash- Humpbacks like to eat krill, not plastic!

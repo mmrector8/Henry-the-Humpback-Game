@@ -58,7 +58,7 @@ body {
     right: 15px;
 }
 
-#mute{
+#mute, #open-instructions{
     font-family: copperplate;
     font-weight: bold;
     font-size: 20px;
@@ -103,7 +103,7 @@ body {
 .modal.active{
     transform: translate(-50%, -50%)
 }
-//style modal header
+
 .modal-header {
     display: flex;
     justify-content: space-between;

@@ -62,7 +62,7 @@ body {
   right: 15px;
 }
 
-#mute {
+#mute, #open-instructions {
   font-family: copperplate;
   font-weight: bold;
   font-size: 20px;

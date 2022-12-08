@@ -186,8 +186,8 @@ export default class Game {
             } else if (this.gameOver()) {
                 this.health = 0;
                 this.ctx.font = "bold 50px copperplate"
-                this.ctx.fillText("Oh no, Henry can't migrate! ", 90, 260, 600)
-                this.ctx.fillText("Click below to try again!", 90, 290, 600)
+                this.ctx.fillText(" Oh no, Henry can't migrate! ", 100, 260, 600)
+                this.ctx.fillText("Click below to try again!", 100, 300, 600)
                 window.cancelAnimationFrame(animate)
             }
         }

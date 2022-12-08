@@ -45,7 +45,7 @@ export default class Game {
         this.timer = 200;
         this.winningKrillEaten = 3000;
         this.collisions=[]
-        this.health = 100;
+        this.health = 500;
         this.timer = 0;
         this.backgroundAudio = document.getElementById("background-music");
         this.startAnimation = false;
@@ -68,15 +68,15 @@ export default class Game {
     }
 
     pauseGame() {
-        window.addEventListener('keydown', (e) => {
-            if (e.keyCode == 32) {
-                if (this.startAnimation === true && this.gameStarted === true) {
-                    this.startAnimation = false;
-                } else {
-                    this.startAnimation = true;
-                };
-            }
-        })
+            window.addEventListener('keydown', (e) => {
+                if (e.keyCode == 32) {
+                    if (this.startAnimation === true && this.gameStarted === true) {
+                        this.startAnimation = false;
+                    } else {
+                        this.startAnimation = true;
+                    };
+                }
+            })
     }
 
 
@@ -205,7 +205,7 @@ export default class Game {
             } else if (this.gameOver()) {
                 this.health = 0;
                 this.ctx.font = "bold 50px copperplate"
-                this.ctx.fillText(" Oh no, Henry can't migrate! ", 100, 260, 600)
+                this.ctx.fillText("Oh no, Henry can't migrate! ", 100, 260, 600)
                 this.ctx.fillText("Click below to try again!", 100, 300, 600)
                 this.gameOverVar = true;
                 //window.cancelAnimationFrame(animate)

@@ -43,7 +43,7 @@ export default class Game {
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.krillLbs = 0;
         this.timer = 200;
-        this.winningKrillEaten = 3000;
+        this.winningKrillEaten = 300;
         this.collisions=[]
         this.health = 500;
         this.timer = 0;
@@ -72,9 +72,11 @@ export default class Game {
                 if (e.keyCode == 32) {
                     if (this.startAnimation === true && this.gameStarted === true) {
                         this.startAnimation = false;
-                    } else {
+                    }else{
                         this.startAnimation = true;
-                    };
+                    }
+                } else{
+                    this.startAnimation = true;
                 }
             })
     }
@@ -267,7 +269,8 @@ export default class Game {
             this.collisionWithObject();
             this.play();
 
-        } else if (this.startAnimation === false) {
+        } else if (this.startAnimation === false && this.gameStarted === true) {
+            console.log('this is hitting')
             this.ctx.font = "bold 35px copperplate"
             this.ctx.fillStyle = "#ffca66"
             this.ctx.fillText("              Game paused", 170, 280, 600)

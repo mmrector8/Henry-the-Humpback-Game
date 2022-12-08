@@ -32,11 +32,6 @@ In addition, this project will include:
 
 1. An “about” modal describing the background and rules of the game
 2. A production README
-
-## Wireframe:
-
-(https://user-images.githubusercontent.com/100038201/205185336-5a726922-a816-4624-b8da-fced4594af84.png)
-
  
 ## Technologies, Libraries, APIs
 

@@ -203,14 +203,12 @@ export default class Game {
                 this.ctx.fillText("Henry is ready for", 110, 270, 600)
                 this.ctx.fillText("a successful migration!", 110, 330, 600)
                 this.gameOverVar = true;
-                //window.cancelAnimationFrame(animate)
             } else if (this.gameOver()) {
                 this.health = 0;
                 this.ctx.font = "bold 50px copperplate"
                 this.ctx.fillText("Oh no, Henry can't migrate! ", 100, 260, 600)
                 this.ctx.fillText("Click below to try again!", 100, 300, 600)
                 this.gameOverVar = true;
-                //window.cancelAnimationFrame(animate)
             }
         }
      }
@@ -249,7 +247,7 @@ export default class Game {
         if (this.gameOverVar) {
             window.cancelAnimationFrame(animate)
         }
-        let frame = requestAnimationFrame(this.animate.bind(this))
+        requestAnimationFrame(this.animate.bind(this))
         if (this.startAnimation) {
             const deltaTime = timeStamp - LAST_TIME;
             LAST_TIME = timeStamp;

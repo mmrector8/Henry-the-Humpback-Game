@@ -13,6 +13,11 @@ body {
   position: relative;
 }
 
+.canvas {
+  width: 800px;
+  margin: auto;
+}
+
 #titleText {
   font-size: 38px;
   font-family: "Luckiest Guy", cursive;
@@ -54,7 +59,7 @@ body {
   position: absolute;
   z-index: 50;
   top: 10px;
-  right: 65px;
+  right: 15px;
 }
 
 #mute {
@@ -71,4 +76,60 @@ body {
   cursor: pointer;
   background-color: rgb(0, 149, 255);
   color: #ffca66;
+}
+
+#morgan-links {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+#github, #linkedin {
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 20px;
+  z-index: 50;
+  background-color: rgb(0, 149, 255);
+  width: 600px;
+  height: 450px;
+}
+
+.modal.active {
+  transform: translate(-50%, -50%);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  font-family: copperplate;
+  font-weight: bold;
+  color: #ffca66;
+  font-size: 48px;
+  border-bottom: 2px solid black;
+}
+
+.modal-header .close-modal {
+  cursor: pointer;
+  background-color: #ffca66;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 28px;
+  font-family: copperplate;
+  font-weight: bold;
+}
+
+#instruction-info {
+  font-size: 20px;
+  padding: 20px;
+  font-family: arial;
 }

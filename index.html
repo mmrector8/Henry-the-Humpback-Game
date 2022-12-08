@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Henry the Humpback Game</title> 
+    <link rel="icon" type="image/x-icon" href="./images/favicon.png">
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,18 +16,46 @@
     </style>
 </head>
 <body id ="body">
+    <div id="morgan-links">
+         <a href="https://github.com/mmrector8?tab=repositories" class="morgan">GitHub</a>
+        <a href="https://www.linkedin.com/in/morgan-marie-rector/" class="morgan">LinkedIn</a>
+    </div>
+
     <div class="title" id = "title">
         <h1 id ="titleText"> Henry, the Humpback Whale Game</h1>
     </div>  
+
     
-    <!--audio id="background-music" loop src = "./audio/henrybackground.mp3"></audio-->
+    <audio id="background-music" loop src = "./audio/henrybackground.mp3"></audio>
 
     <div class = "canvas">
         <canvas id="game-canvas" width="800" height="600"></canvas>
         <div id="audio-controls">
-            <button id="mute" data-index-number="1"> Mute</button>
+            <button id="mute"> Mute</button>
+            <button id="open-instructions">Open Instructions</button>
         </div>
-        <img src="./images/newgame.png" id ="startImage" width="800" height ="600">
+        <img src="./images/newgame.png" id="startImage" width="800" height="600">
+
+        <!--beginning of modal-->
+
+            <div class ="modal" id ="modal">
+                    <div class ="modal-header">
+                        <div class="modal-title">Instructions</div>
+                        <button class="close-modal" id ="close-button">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="instruction-info"> 
+                        In the spring and summer in Monterey Bay, CA, USA: <br><br>
+                        Humpback whales need to eat around
+                        <strong>3000</strong> lbs of krill a day
+                        to prepare for their
+                        migration south to Mexico. <br> <br> Your job is to help Henry, a young humpback whale, 
+                        eat 3000 lbs of krill and avoid obstacles in his path. <br><br>
+                        Use the keyboard arrows to control Henry as he swims and make sure to keep track of Henry's health level. He will gain health by eating and lose health by colliding with obstacles.
+                        <br><br>Kelp and crabs will not hurt Henry!
+                    </p>
+                    </div>
+            </div>
     </div>
         <div id="game-start">
             <a href="" id="restart">Start Over</a>

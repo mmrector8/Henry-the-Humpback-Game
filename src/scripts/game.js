@@ -49,6 +49,7 @@ export default class Game {
         this.timer = 0;
         this.backgroundAudio = document.getElementById("background-music")
         this.addMuteAudioButton();
+        this.addModalButtons()
         this.startGame();
     }
 
@@ -75,13 +76,27 @@ export default class Game {
         this.endOfGame();
      }
 
+     addModalButtons(){
+         const openInstructionsButton = document.getElementById("open-instructions")
+         const closeInstructionsButton = document.getElementById("close-button")
+         const modal = document.getElementById("modal")
+
+         openInstructionsButton.addEventListener("click", ()=>{
+            modal.classList.add("active")
+         })
+
+         closeInstructionsButton.addEventListener('click', ()=>{
+            modal.classList.remove("active")
+         })
+     }
+
      addKrillToEat(){
          let remainingKrillToEat = this.winningKrillEaten - this.krillLbs
          this.ctx.fillStyle = "black"
          this.ctx.fillText("Eat:", 20, 30, 50)
          if(remainingKrillToEat >= 2500){
              this.ctx.fillStyle = "red"
-         } else if(remainingKrillToEat <2500 && remainingKrillToEat > 100){
+         } else if(remainingKrillToEat <2500 && remainingKrillToEat > 1000){
             this.ctx.fillStyle = "yellow"
          }else{
             this.ctx.fillStyle = "green"

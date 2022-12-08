@@ -43,7 +43,7 @@ export default class Game {
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.krillLbs = 0;
         this.timer = 200;
-        this.winningKrillEaten = 3000;
+        this.winningKrillEaten = 300;
         this.collisions=[]
         this.health = 500;
         this.timer = 0;
@@ -67,9 +67,9 @@ export default class Game {
         
         this.ctx.font= "bold 25px copperplate"
         this.ctx.fillStyle = "black"
-        this.ctx.fillText("Health Points:", 350, 30, 150)
+        this.ctx.fillText("Health Points:", 340, 30, 150)
         this.addHealthColor();
-        this.ctx.fillText(`${this.health}`, 510,30, 150)
+        this.ctx.fillText(`${this.health}`, 500,30, 150)
         this.addKrillToEat();
         this.checkCollisions();
         this.handleCollisionAnimations();
@@ -179,14 +179,17 @@ export default class Game {
             let bodyOverflow = document.getElementById("body")
             bodyOverflow.style.overflow = "visible"
             if (this.winner()) {
+                this.ctx.font = "bold 50px copperplate"
                 this.textAlign = "center";
-                this.ctx.fillText("Congratulations, you won!", 250, 200)
-                this.ctx.fillText("Henry is ready for", 250, 300)
-                this.ctx.fillText("a successful migration!", 250, 325)
+                this.ctx.fillText("Congratulations, you won!", 110, 200, 600)
+                this.ctx.fillText("Henry is ready for", 110, 270, 600)
+                this.ctx.fillText("a successful migration!", 110, 330, 600)
                 window.cancelAnimationFrame(animate)
             } else if (this.gameOver()) {
                 this.health = 0;
-                this.ctx.fillText("Oh no, you lost. Try again!", 230, 200)
+                this.ctx.font = "bold 50px copperplate"
+                this.ctx.fillText("Oh no, Henry can't migrate! ", 90, 260, 600)
+                this.ctx.fillText("Click below to try again!", 90, 290, 600)
                 window.cancelAnimationFrame(animate)
             }
         }

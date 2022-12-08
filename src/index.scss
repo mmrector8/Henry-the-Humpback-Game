@@ -61,14 +61,15 @@ body {
 #mute, #open-instructions{
     font-family: copperplate;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     background-color: #ffca66;
     color: rgb(0, 149, 255);
     border: 2px solid black;
     border-radius: 8px;
 }
 
-#mute:hover { 
+
+#mute:hover, #open-instructions:hover { 
     cursor: pointer;
     background-color: rgb(0, 149, 255);
     color:#ffca66;

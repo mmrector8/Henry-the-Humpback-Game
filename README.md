@@ -47,10 +47,31 @@ Webpack to bundle and transpile the JavaScript code
 Npm to manage the dependencies of the project
 
 ## Technical Implementation 
-**Technical Implemention**
+
+**Character Animation**
+  Each character is animated through Sprite sheets and custom animation functions. See example for the crab animation below: 
+
+  ```javascript
+      animate() {
+        this.ctx.drawImage(crab, (this.frameX * this.width), this.height, this.width, this.height, this.x, this.y, this.width/2, this.height/2);
+        if (this.incrementer % 10 === 0) {
+            if (this.frameX < 6) {
+                this.frameX++;
+            } if (this.frameX === 6) {
+                this.frameX = 0;
+            }
+        }
+        this.incrementer++
+    }
+    updateCrab(){
+        this.x += 3;
+    }
+  ```
 
 
-**Future Features to Add:**
+**Collision Detection**
+
+## Future Features to Add:
 * Add extra snippets about humpback whales
 * Implement a 1 second loss of control of keyboard when you collide
 * Add more variation in underwater animation

@@ -243,6 +243,31 @@ export default class Game {
         
         requestAnimationFrame(this.animate.bind(this))
     }
+    
+    obstacleArray() {
+        CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR).concat(NET_ARR)
+        return CURRENT_OBSTACLES
+
+    }
+
+    collisionWithObject() {
+        for (let i = 0; i < CURRENT_OBSTACLES.length; i++) {
+
+            if (CURRENT_OBSTACLES[i].x < 700 && this.henry.x < 700) {
+                if ((CURRENT_OBSTACLES[i].y + (CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor)) >= this.henry.y
+                    && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor)
+                    && (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= CURRENT_OBSTACLES[i].x
+                    && this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor)
+                    && CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
+                    CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
+                    this.collisions.push(CURRENT_OBSTACLES[i])
+                }
+            }
+
+        }
+        return false;
+    }
+
 
     addKrill(deltaTime) {
         let krillInterval = Math.floor(Math.random() * 4500 + 3500);
@@ -387,28 +412,5 @@ export default class Game {
         })
     }
 
-    obstacleArray() {
-        CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR).concat(NET_ARR)
-        return CURRENT_OBSTACLES
-
-    }
-
-    collisionWithObject() {
-        for (let i = 0; i < CURRENT_OBSTACLES.length; i++) {
-
-            if(CURRENT_OBSTACLES[i].x < 700 && this.henry.x < 700){
-                if ((CURRENT_OBSTACLES[i].y + (CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor)) >= this.henry.y
-                    && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor)
-                    && (this.henry.x + (this.henry.henryWidth/ this.henry.divisor)) >= CURRENT_OBSTACLES[i].x
-                    && this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor)
-                    && CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
-                    CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
-                    this.collisions.push(CURRENT_OBSTACLES[i])
-                }
-            }
-           
-        }
-        return false;
-    }
-    
+ 
 }

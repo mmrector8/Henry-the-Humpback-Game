@@ -48,6 +48,11 @@ header {
   margin-top: 10px;
 }
 
+#restart:hover {
+  color: rgb(0, 149, 255);
+  background-color: #ffca66;
+}
+
 #game-canvas {
   border: 3px solid black;
 }

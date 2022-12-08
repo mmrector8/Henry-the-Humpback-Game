@@ -89,3 +89,10 @@ Collisions are detected between Henry and other objects via tracking the x and y
 * Add extra snippets about humpback whales
 * Implement a 1 second loss of control of keyboard when you collide
 * Add more variation in underwater animation
+
+## Animation Drawing Credits:
+* Krill Photo: https://www.freepik.com/free-vector/arctic-food-chain-pyramid_9742089.htm#query=krill&position=6&from_view=search&track=sph
+
+* Humpback Whale Photo: https://www.freepik.com/free-vector/set-humpback-whale-cartoon-white-background_27538974.htm#query=humpback%20whale&position=2&from_view=search&track=sph
+
+* Submarine Photo: https://www.freepik.com/premium-vector/cute-submarine-cartoon-submarine-clipart-vector-illustration_16703159.htm

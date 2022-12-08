@@ -43,7 +43,7 @@ export default class Game {
         this.background = new Background(CANVAS_WIDTH, CANVAS_HEIGHT, ctx);
         this.krillLbs = 0;
         this.timer = 200;
-        this.winningKrillEaten = 300;
+        this.winningKrillEaten = 3000;
         this.collisions=[]
         this.health = 500;
         this.timer = 0;

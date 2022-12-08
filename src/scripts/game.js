@@ -45,11 +45,12 @@ export default class Game {
         this.timer = 200;
         this.winningKrillEaten = 3000;
         this.collisions=[]
-        this.health = 500;
+        this.health = 100;
         this.timer = 0;
         this.backgroundAudio = document.getElementById("background-music");
         this.startAnimation = false;
         this.gameStarted = false;
+        this.gameOverVar = false;
         this.addMuteAudioButton();
         this.addModalButtons()
         this.startGame();
@@ -66,13 +67,12 @@ export default class Game {
             }, { once: true })
     }
 
-    pauseGame(){
-        window.addEventListener('keydown', (e)=>{
-            if(e.keyCode == 32){
-                console.log('space pressed')
-                if(this.startAnimation === true && this.gameStarted === true){
+    pauseGame() {
+        window.addEventListener('keydown', (e) => {
+            if (e.keyCode == 32) {
+                if (this.startAnimation === true && this.gameStarted === true) {
                     this.startAnimation = false;
-                } else{
+                } else {
                     this.startAnimation = true;
                 };
             }
@@ -193,21 +193,22 @@ export default class Game {
 
      endOfGame(){
         if(this.gameOver()){
-            let bodyOverflow = document.getElementById("body")
-            bodyOverflow.style.overflow = "visible"
+
             if (this.winner()) {
                 this.ctx.font = "bold 50px copperplate"
                 this.textAlign = "center";
                 this.ctx.fillText("Congratulations, you won!", 110, 200, 600)
                 this.ctx.fillText("Henry is ready for", 110, 270, 600)
                 this.ctx.fillText("a successful migration!", 110, 330, 600)
-                window.cancelAnimationFrame(animate)
+                this.gameOverVar = true;
+                //window.cancelAnimationFrame(animate)
             } else if (this.gameOver()) {
                 this.health = 0;
                 this.ctx.font = "bold 50px copperplate"
                 this.ctx.fillText(" Oh no, Henry can't migrate! ", 100, 260, 600)
                 this.ctx.fillText("Click below to try again!", 100, 300, 600)
-                window.cancelAnimationFrame(animate)
+                this.gameOverVar = true;
+                //window.cancelAnimationFrame(animate)
             }
         }
      }
@@ -241,9 +242,13 @@ export default class Game {
         this.health += 10;
     }
 
+            
     animate(timeStamp) {
+        if (this.gameOverVar) {
+            window.cancelAnimationFrame(animate)
+        }
         let frame = requestAnimationFrame(this.animate.bind(this))
-        if (this.startAnimation){
+        if (this.startAnimation) {
             const deltaTime = timeStamp - LAST_TIME;
             LAST_TIME = timeStamp;
             this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -262,16 +267,17 @@ export default class Game {
             this.collisionWithObject();
             this.play();
 
-            
-        } else if (this.startAnimation=== false){
+        } else if (this.startAnimation === false) {
             this.ctx.font = "bold 35px copperplate"
-            this.ctx.fillStyle ="#ffca66"
+            this.ctx.fillStyle = "#ffca66"
             this.ctx.fillText("              Game paused", 170, 280, 600)
             this.ctx.fillText("Press space bar to continue", 170, 340, 600)
             window.cancelAnimationFrame(animate)
         }
-       
+
     }
+         
+       
 
     obstacleArray() {
         CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR).concat(NET_ARR)

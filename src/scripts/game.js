@@ -202,7 +202,7 @@ export default class Game {
                 this.ctx.font = "bold 50px copperplate"
                 this.textAlign = "center";
                 this.ctx.fillText("Congratulations, you won!", 110, 200, 600)
-                this.ctx.fillText("Henry is ready for", 110, 270, 600)
+                this.ctx.fillText("  Henry is ready for", 110, 270, 600)
                 this.ctx.fillText("a successful migration!", 110, 330, 600)
                 this.gameOverVar = true;
             } else if (this.gameOver()) {

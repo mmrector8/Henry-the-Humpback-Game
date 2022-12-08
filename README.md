@@ -68,9 +68,28 @@ Npm to manage the dependencies of the project
     }
   ```
 
-
 **Collision Detection**
+Collisions are detected between Henry and other objects via tracking the x and y coordinates of both objects and their heights and widths. Collisions are only recorded once by changing their name to uppercase once they have been added to the collision array.
 
+```javascript
+      collisionWithObject() {
+        for (let i = 0; i < CURRENT_OBSTACLES.length; i++) {
+
+            if (CURRENT_OBSTACLES[i].x < 700 && this.henry.x < 700) {
+                if ((CURRENT_OBSTACLES[i].y + (CURRENT_OBSTACLES[i].height / CURRENT_OBSTACLES[i].divisor)) >= this.henry.y
+                    && CURRENT_OBSTACLES[i].y <= this.henry.y + (this.henry.henryHeight / this.henry.divisor)
+                    && (this.henry.x + (this.henry.henryWidth / this.henry.divisor)) >= CURRENT_OBSTACLES[i].x
+                    && this.henry.x <= CURRENT_OBSTACLES[i].x + (CURRENT_OBSTACLES[i].width / CURRENT_OBSTACLES[i].divisor)
+                    && CURRENT_OBSTACLES[i].name !== CURRENT_OBSTACLES[i].name.toUpperCase()) {
+                    CURRENT_OBSTACLES[i].name = CURRENT_OBSTACLES[i].name.toUpperCase();
+                    this.collisions.push(CURRENT_OBSTACLES[i])
+                }
+            }
+
+        }
+        return false;
+    }
+```
 ## Future Features to Add:
 * Add extra snippets about humpback whales
 * Implement a 1 second loss of control of keyboard when you collide

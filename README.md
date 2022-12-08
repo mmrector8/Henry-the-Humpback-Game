@@ -1,5 +1,4 @@
-# Henry-the-Humpback-Game
-[Henry, the Humpback Whale Game](https://mmrector8.github.io/Henry-the-Humpback-Game/)
+# [Henry, the Humpback Whale Game](https://mmrector8.github.io/Henry-the-Humpback-Game/)
 
 ## Background:
 

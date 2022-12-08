@@ -59,7 +59,9 @@ export default class Game {
 
     startGame(){
         let display = document.getElementById("startImage")
+        let muteButton = document.getElementById("mute")
             window.addEventListener('keydown', () => {
+                muteButton.classList.remove("hidden")
                 this.gameStarted = true;
                 this.backgroundAudio.play();
                 display.style.display = "none"

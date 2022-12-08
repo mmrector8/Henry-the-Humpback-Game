@@ -47,20 +47,39 @@ export default class Game {
         this.collisions=[]
         this.health = 500;
         this.timer = 0;
-        this.backgroundAudio = document.getElementById("background-music")
+        this.backgroundAudio = document.getElementById("background-music");
+        this.startAnimation = false;
+        this.gameStarted = false;
         this.addMuteAudioButton();
         this.addModalButtons()
         this.startGame();
+        this.pauseGame();
     }
 
     startGame(){
         let display = document.getElementById("startImage")
             window.addEventListener('keydown', () => {
+                this.gameStarted = true;
                 this.backgroundAudio.play();
                 display.style.display = "none"
                 this.animate(0)
             }, { once: true })
     }
+
+    pauseGame(){
+        window.addEventListener('keydown', (e)=>{
+            if(e.keyCode == 32){
+                console.log('space pressed')
+                if(this.startAnimation === true && this.gameStarted === true){
+                    this.startAnimation = false;
+                } else{
+                    this.startAnimation = true;
+                };
+            }
+        })
+    }
+
+
 
     play(){        
         this.ctx.font= "bold 25px copperplate"
@@ -223,27 +242,35 @@ export default class Game {
     }
 
     animate(timeStamp) {
-        const deltaTime = timeStamp - LAST_TIME;
-        LAST_TIME = timeStamp;
-        this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        this.background.animateBackground();
-        this.background.updatePosition();
-        this.henry.animateHenry();
-        this.addKrill(deltaTime);
-        this.addKelp(deltaTime);
-        this.addRocks(deltaTime);
-        this.addOtherWhales(deltaTime);
-        this.addTrash(deltaTime)
-        this.addSubs(deltaTime);
-        this.addNet(deltaTime);
-        this.addCrab(deltaTime)
-        this.obstacleArray();
-        this.collisionWithObject();
-        this.play();
-        
-        requestAnimationFrame(this.animate.bind(this))
+        let frame = requestAnimationFrame(this.animate.bind(this))
+        if (this.startAnimation){
+            const deltaTime = timeStamp - LAST_TIME;
+            LAST_TIME = timeStamp;
+            this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            this.background.animateBackground();
+            this.background.updatePosition();
+            this.henry.animateHenry();
+            this.addKrill(deltaTime);
+            this.addKelp(deltaTime);
+            this.addRocks(deltaTime);
+            this.addOtherWhales(deltaTime);
+            this.addTrash(deltaTime)
+            this.addSubs(deltaTime);
+            this.addNet(deltaTime);
+            this.addCrab(deltaTime)
+            this.obstacleArray();
+            this.collisionWithObject();
+            this.play();
+
+            
+        } else if (this.startAnimation=== false){
+            this.ctx.fillText("             Game paused", 250, 300, 600)
+            this.ctx.fillText("Press space bar to continue", 250, 340, 600)
+            window.cancelAnimationFrame(animate)
+        }
+       
     }
-    
+
     obstacleArray() {
         CURRENT_OBSTACLES = (KRILL_ARR).concat(SUB_ARR).concat(WHALE_ARR).concat(TRASH_ARR).concat(KELP_ARR).concat(ROCK_ARR).concat(NET_ARR)
         return CURRENT_OBSTACLES

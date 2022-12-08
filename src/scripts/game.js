@@ -268,7 +268,6 @@ export default class Game {
             this.play();
 
         } else if (this.startAnimation === false && this.gameStarted === true) {
-            console.log('this is hitting')
             this.ctx.font = "bold 35px copperplate"
             this.ctx.fillStyle = "#ffca66"
             this.ctx.fillText("              Game paused", 170, 280, 600)

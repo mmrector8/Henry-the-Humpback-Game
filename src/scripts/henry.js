@@ -36,34 +36,28 @@ export default class Henry {
     }
 
     moveHorizontallyLeft(){
-        this.animationIncrementer = 0;
         if (this.animationIncrementer % 2 === 0) {
             this.leftForceApplied += 0.01;
         }
         if(this.x > 0){
-            this.x -= (10 * this.upForceApplied)
+            this.x -= (10 * this.leftForceApplied)
         }else{
             this.x = 0;
         }
-        this.animationIncrementer++
     }
 
     moveHorizontallyRight() {
-        // this.animationIncrementer = 0;
-        // this.forceApplied = 1;
-        // if (this.animationIncrementer % 20 === 0) {
-        //     this.forceApplied += 4;
-        // }
-        // if (this.x <600) {
-        //     this.x+=10;
-        // } else {
-        //     this.x = 600;
-        // }
-        // this.animationIncrementer++
+        if (this.animationIncrementer % 20 === 0) {
+            this.rightForceApplied += 0.01;
+        }
+        if (this.x <600) {
+            this.x += (10 * this.rightForceApplied);
+        } else {
+            this.x = 600;
+        }
     }
 
     moveVerticallyUp(){
-         this.animationIncrementer=0;
         if(this.animationIncrementer % 2 ===0){
             this.upForceApplied += 0.01;
         }
@@ -72,21 +66,17 @@ export default class Henry {
             } else {
                 this.y = 0;
             }
-        this.animationIncrementer++
     }
 
     moveVerticallyDown() {
-        this.animationIncrementer = 0;
-        let forceApplied = 1;
         if (this.animationIncrementer % 20 === 0) {
-                forceApplied += 4;
+            this.downForceApplied += 0.01;
             }
             if (this.y < 450) {
-                this.y+=15;
+                this.y += (10 * this.downForceApplied);
             } else {
                 this.y = 450;
             }
-        this.animationIncrementer++
     }
 
     addListeners(){
@@ -101,6 +91,7 @@ export default class Henry {
             }else if(e.key === "ArrowDown"){
                 this.moveVerticallyDown();
             }
+            this.animationIncrementer++
         });
 
         window.addEventListener("keyup", (e) => {

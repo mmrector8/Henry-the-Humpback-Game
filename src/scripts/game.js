@@ -243,7 +243,6 @@ export default class Game {
     incrementHealth(){
         this.health += 10;
     }
-
             
     animate(timeStamp) {
         requestAnimationFrame(this.animate.bind(this))
@@ -268,7 +267,6 @@ export default class Game {
             this.obstacleArray();
             this.collisionWithObject();
             this.play();
-
         } 
         else if (this.startAnimation === false && this.gameStarted === true) {
             this.ctx.font = "bold 35px copperplate"

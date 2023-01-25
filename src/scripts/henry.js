@@ -12,7 +12,12 @@ export default class Henry {
         this.henryHeight = 212;
         this.frameX= 1;
         this.incrementer =0;
+        this.animationIncrementer = 0;
         this.divisor = 3;
+        this.upForceApplied =1;
+        this.downForceApplied = 1;
+        this.leftForceApplied = 1;
+        this.rightForceApplied = 1;
         this.y = 250;
         this.x =575;
         this.addListeners();
@@ -20,7 +25,7 @@ export default class Henry {
 
     animateHenry() {
         this.ctx.drawImage(henry, (this.frameX * 527), 212, 527, 212, this.x, this.y, this.henryWidth/3, this.henryHeight/3)
-        if (this.incrementer % 20 === 0) {
+        if (this.incrementer % 15 === 0) {
             if (this.frameX < 4) {
                 this.frameX++;
             } if (this.frameX === 4) {
@@ -31,52 +36,83 @@ export default class Henry {
     }
 
     moveHorizontallyLeft(){
+        this.animationIncrementer = 0;
+        if (this.animationIncrementer % 2 === 0) {
+            this.leftForceApplied += 0.01;
+        }
         if(this.x > 0){
-            this.x--;
+            this.x -= (10 * this.upForceApplied)
         }else{
             this.x = 0;
         }
-        requestAnimationFrame(this.moveHorizontallyLeft.bind(this));
+        this.animationIncrementer++
     }
 
     moveHorizontallyRight() {
-        if (this.x <600) {
-            this.x++;
-        } else {
-            this.x = 600;
-        }
-    requestAnimationFrame(this.moveHorizontallyRight.bind(this));
+        // this.animationIncrementer = 0;
+        // this.forceApplied = 1;
+        // if (this.animationIncrementer % 20 === 0) {
+        //     this.forceApplied += 4;
+        // }
+        // if (this.x <600) {
+        //     this.x+=10;
+        // } else {
+        //     this.x = 600;
+        // }
+        // this.animationIncrementer++
     }
 
     moveVerticallyUp(){
-        if (this.y > 0) {
-            this.y--;
-        } else {
-            this.y = 0;
+         this.animationIncrementer=0;
+        if(this.animationIncrementer % 2 ===0){
+            this.upForceApplied += 0.01;
         }
-        requestAnimationFrame(this.moveVerticallyUp.bind(this));
+            if (this.y > 0) {
+                this.y-=(10 * this.upForceApplied);
+            } else {
+                this.y = 0;
+            }
+        this.animationIncrementer++
     }
 
     moveVerticallyDown() {
-        if (this.y < 450) {
-            this.y++;
-        } else {
-            this.y = 450;
-        }
-        requestAnimationFrame(this.moveVerticallyDown.bind(this));
+        this.animationIncrementer = 0;
+        let forceApplied = 1;
+        if (this.animationIncrementer % 20 === 0) {
+                forceApplied += 4;
+            }
+            if (this.y < 450) {
+                this.y+=15;
+            } else {
+                this.y = 450;
+            }
+        this.animationIncrementer++
     }
 
     addListeners(){
         window.addEventListener("keydown", (e)=>{
             e.preventDefault();
             if(e.key === "ArrowLeft"){
-                this.moveHorizontallyLeft();
+                this.moveHorizontallyLeft()
             } else if (e.key === "ArrowRight") {
                 this.moveHorizontallyRight();
             } else if(e.key === "ArrowUp"){
                 this.moveVerticallyUp();
             }else if(e.key === "ArrowDown"){
                 this.moveVerticallyDown();
+            }
+        });
+
+        window.addEventListener("keyup", (e) => {
+            e.preventDefault();
+            if (e.key === "ArrowLeft") {
+                this.leftForceApplied=1;
+            } else if (e.key === "ArrowRight") {
+                this.rightForceApplied = 1;
+            } else if (e.key === "ArrowUp") {
+                this.upForceApplied = 1;
+            } else if (e.key === "ArrowDown") {
+                this.downForceApplied = 1;
             }
         });
     }

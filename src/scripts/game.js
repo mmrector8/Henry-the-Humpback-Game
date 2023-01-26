@@ -76,6 +76,7 @@ export default class Game {
                         this.startAnimation = false;
                     }else{
                         this.startAnimation = true;
+                        this
                     }
                 } else{
                     this.startAnimation = true;
@@ -101,8 +102,7 @@ export default class Game {
      addModalButtons(){
          const openInstructionsButton = document.getElementById("open-instructions")
          const closeInstructionsButton = document.getElementById("close-button")
-        const overlay = document.getElementById("overlay")
-
+         const overlay = document.getElementById("overlay")
          const modal = document.getElementById("modal")
 
          openInstructionsButton.addEventListener("click", ()=>{
@@ -119,8 +119,10 @@ export default class Game {
      checkIfModalOpen(){
          const modal = document.getElementById("modal")
          if(modal.classList.contains("active")){
-            console.log(true)
             this.startAnimation = false
+            this.backgroundAudio.pause();
+         }else{
+            this.backgroundAudio.play();
          }
      }
 

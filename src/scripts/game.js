@@ -76,7 +76,6 @@ export default class Game {
                         this.startAnimation = false;
                     }else{
                         this.startAnimation = true;
-                        this
                     }
                 } else{
                     this.startAnimation = true;
@@ -118,10 +117,11 @@ export default class Game {
 
      checkIfModalOpen(){
          const modal = document.getElementById("modal")
+         let audioButton = document.getElementById('mute')
          if(modal.classList.contains("active")){
             this.startAnimation = false
             this.backgroundAudio.pause();
-         }else{
+         }else if(!modal.classList.contains("active") && audioButton.innerHTML==="Mute"){
             this.backgroundAudio.play();
          }
      }
@@ -158,7 +158,7 @@ export default class Game {
             if(audioButton.innerHTML === "Unmute"){
                 this.backgroundAudio.play();
                 audioButton.innerHTML = "Mute";
-            }else {
+            }else if(audioButton.innerHTML==="Mute"){
                 this.backgroundAudio.pause();
                 audioButton.innerHTML = "Unmute";
             }

@@ -113,6 +113,11 @@ export default class Game {
             modal.classList.remove("active")
             overlay.classList.remove("active")
          })
+
+         overlay.addEventListener("click",()=>{
+            modal.classList.remove("active")
+            overlay.classList.remove("active")
+         })
      }
 
      checkIfModalOpen(){

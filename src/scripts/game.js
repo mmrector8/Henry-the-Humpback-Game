@@ -85,7 +85,8 @@ export default class Game {
 
 
 
-    play(){        
+    play(){     
+        this.checkIfModalOpen();   
         this.ctx.font= "bold 25px copperplate"
         this.ctx.fillStyle = "black"
         this.ctx.fillText("Health Points:", 340, 30, 150)
@@ -100,15 +101,27 @@ export default class Game {
      addModalButtons(){
          const openInstructionsButton = document.getElementById("open-instructions")
          const closeInstructionsButton = document.getElementById("close-button")
+        const overlay = document.getElementById("overlay")
+
          const modal = document.getElementById("modal")
 
          openInstructionsButton.addEventListener("click", ()=>{
             modal.classList.add("active")
-         })
+            overlay.classList.add("active")
+         }) 
 
          closeInstructionsButton.addEventListener('click', ()=>{
             modal.classList.remove("active")
+            overlay.classList.remove("active")
          })
+     }
+
+     checkIfModalOpen(){
+         const modal = document.getElementById("modal")
+         if(modal.classList.contains("active")){
+            console.log(true)
+            this.startAnimation = false
+         }
      }
 
      addKrillToEat(){

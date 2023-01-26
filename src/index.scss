@@ -115,6 +115,7 @@ i:hover{
     cursor: pointer;
 }
 
+
 .modal {
     position: fixed;
     top: 50%;
@@ -172,3 +173,22 @@ i:hover{
     padding: 12px;
 }
 
+#overlay {
+    transform: translate(-50%, -50%) scale(0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    pointer-events: none;
+    z-index: 20;
+}
+
+#overlay.active{
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+    // transform: translate(-50%, -50%);
+    pointer-events: all;
+}

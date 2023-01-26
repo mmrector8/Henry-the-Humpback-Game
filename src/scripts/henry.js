@@ -37,9 +37,10 @@ export default class Henry {
 
     moveHorizontallyLeft(){
         if (this.animationIncrementer % 2 === 0) {
-            this.leftForceApplied += 0.01;
+            this.leftForceApplied += 0.015;
         }
         if(this.x > 0){
+            console.log(10* this.leftForceApplied)
             this.x -= (10 * this.leftForceApplied)
         }else{
             this.x = 0;
@@ -47,18 +48,18 @@ export default class Henry {
     }
 
     moveHorizontallyRight() {
-        if (this.animationIncrementer % 20 === 0) {
-            this.rightForceApplied += 0.01;
+        if (this.animationIncrementer % 10 === 0) {
+            this.rightForceApplied += 0.005;
         }
-        if (this.x <600) {
-            this.x += (10 * this.rightForceApplied);
+        if (this.x <590) {
+            this.x+=20;
         } else {
-            this.x = 600;
+            this.x = 590;
         }
     }
 
     moveVerticallyUp(){
-        if(this.animationIncrementer % 2 ===0){
+        if(this.animationIncrementer % 20 ===0){
             this.upForceApplied += 0.01;
         }
             if (this.y > 0) {
@@ -69,8 +70,8 @@ export default class Henry {
     }
 
     moveVerticallyDown() {
-        if (this.animationIncrementer % 20 === 0) {
-            this.downForceApplied += 0.01;
+        if (this.animationIncrementer % 2 === 0) {
+            this.downForceApplied += 0.015;
             }
             if (this.y < 450) {
                 this.y += (10 * this.downForceApplied);

@@ -1,5 +1,6 @@
 body {
     background-color: rgb(167, 232, 249);
+    height: 100vh;
 }
 
 header{
@@ -176,6 +177,8 @@ i:hover{
 #overlay {
     transform: translate(-50%, -50%) scale(0);
     position: fixed;
+    height: 200vh;
+    width: 200vw;
     top: 0;
     left: 0;
     right: 0;
@@ -186,7 +189,7 @@ i:hover{
 }
 
 #overlay.active{
-    opacity: 1;
+    opacity: 0.9;
     transform: translate(-50%, -50%);
     pointer-events: all;
 }

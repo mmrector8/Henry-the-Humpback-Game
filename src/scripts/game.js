@@ -57,14 +57,16 @@ export default class Game {
         this.pauseGame();
     }
 
-    startGame(){
+    startGame (){
         let display = document.getElementById("startImage")
         let muteButton = document.getElementById("mute")
+        let startOver = document.getElementById("restart")
             window.addEventListener('keydown', () => {
                 muteButton.classList.remove("hidden")
+                startOver.classList.remove("hidden")
                 this.gameStarted = true;
                 this.backgroundAudio.play();
-                display.style.display = "none"
+                display.style.display = "none";
                 this.animate(0)
             }, { once: true })
     }
@@ -97,7 +99,6 @@ export default class Game {
         this.handleCollisionAnimations();
         this.endOfGame();
      }
-
      addModalButtons(){
          const openInstructionsButton = document.getElementById("open-instructions")
          const closeInstructionsButton = document.getElementById("close-button")
@@ -253,7 +254,7 @@ export default class Game {
     }
 
     incrementKrillEaten(){
-        this.krillLbs += 150;
+        this.krillLbs += 200;
     }
     
     decrementHealth(){
